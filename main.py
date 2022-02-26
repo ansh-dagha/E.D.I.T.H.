@@ -1,5 +1,10 @@
 import datetime
+import webbrowser
 from speech_functions import *
+import requests
+from bs4 import BeautifulSoup
+from urllib.request import urlopen
+from googlesearch import search
 
 addressee = ['Sir', 'Miss', 'Boss']
 
@@ -12,9 +17,36 @@ def greet(addressee):
     else:
         speak_(f'Good Evening {addressee}')
 
-greet(addressee[0])
+# greet(addressee[0])
+def searches(param):
+    # param = 'project'
 
-while False:
+    for j in search(param, tld="co.in", num=1, stop=1):
+        weburl = j
+
+    soupti = BeautifulSoup(urlopen(weburl),features="html.parser")
+    queryurl = "https://www.google.com/search?q="+param
+    page = requests.get(queryurl).text
+    soup = BeautifulSoup(page, "html.parser").select(".s3v9rd.AP7Wnd")
+    ans = soup[0].getText(strip=True)
+    if len(ans) > 100:
+        text = ans.partition('.')[0] + '.'
+    # displaying the title
+    title = soupti.title.get_text().split('-')[1]
+    result = "According to"+title+" : "+text
+    speak_(result)
+    speak_('Do you want to open the site?')
+    # ch = input('Do you want to open the site?(y/n)')
+    while True:
+        stat = listen_()
+        if stat == None:
+            continue
+        if 'yes' in stat:
+            webbrowser.open_new_tab(j)
+        if 'no' in stat:
+            return
+
+while True:
     
     statement = listen_()
     if statement == None:
@@ -22,6 +54,11 @@ while False:
 
     if "hello friday" in statement or 'hey' in statement or 'hello' in statement:
         speak_('Oh Hello sir')
+
+    if 'search' in statement:
+        param = statement.replace("search", "")
+        searches(param)
+    
 
     # if "hello friday" in statement or "ok bye" in statement or "stop" in statement:
     #     speak('your personal assistant G-one is shutting down,Good bye')
