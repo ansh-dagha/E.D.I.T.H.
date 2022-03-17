@@ -22,9 +22,11 @@ def listen_():
         try:
             query = r.recognize_google(audio)
             print(query)
-            # speak_(query)
+            speak_(query)
 
         except Exception:
             speak_('Sorry... I didn\'t get you')
-            return None
+            return listen_()
     return query.lower()
+
+listen_()

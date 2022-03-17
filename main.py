@@ -14,7 +14,7 @@ def greet(addressee):
 
 greet(addressee[0])
 
-while False:
+while True:
     
     statement = listen_()
     if statement == None:
