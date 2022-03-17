@@ -16,7 +16,7 @@ def listen_():
     
     with sr.Microphone() as source:
         print('\nListening...')
-        r.adjust_for_ambient_noise(source, duration = 0.5)
+        r.adjust_for_ambient_noise(source, duration = 0.2)
         audio = r.listen(source)
 
         try:
@@ -26,7 +26,7 @@ def listen_():
 
         except Exception:
             speak_('Sorry... I didn\'t get you')
-            return listen_()
+            return None
     return query.lower()
 
-listen_()
+# listen_()

@@ -6,10 +6,14 @@ import webbrowser
 import os
 import time
 import subprocess
-from ecapture import ecapture as ec
-import wolframalpha
+# from ecapture import ecapture as ec
+# import wolframalpha
 import json
 import requests
+try:
+    from googlesearch import search
+except ImportError:
+    print("No module named 'google' found")
 
 
 print('Loading your AI personal assistant - G One')
@@ -70,13 +74,17 @@ if __name__ == '__main__':
             print('your personal assistant G-one is shutting down,Good bye')
             break
 
-        if 'wikipedia' in statement:
-            speak('Searching Wikipedia...')
-            statement = statement.replace("wikipedia", "")
-            results = wikipedia.summary(statement, sentences=3)
-            speak("According to Wikipedia")
-            print(results)
-            speak(results)
+        if 'search' in statement:
+            speak('Searching ...')
+            param = statement.replace("search", "")
+            page = requests.get("https://www.google.com/search?q=",param).text
+            soup = BeautifulSoup(page, "html.parser").select(".s3v9rd.AP7Wnd")
+
+            for item in soup:
+                print(item.getText(strip=True))
+            # speak("According to Google")
+            # print(results)
+            # speak(results)
 
         elif 'open youtube' in statement:
             webbrowser.open_new_tab("https://www.youtube.com")
@@ -146,23 +154,23 @@ if __name__ == '__main__':
             speak('Here are some headlines from the Times of India,Happy reading')
             time.sleep(6)
 
-        elif "camera" in statement or "take a photo" in statement:
-            ec.capture(0, "robo camera", "img.jpg")
+        # elif "camera" in statement or "take a photo" in statement:
+        #     ec.capture(0, "robo camera", "img.jpg")
 
-        elif 'search' in statement:
-            statement = statement.replace("search", "")
-            webbrowser.open_new_tab(statement)
-            time.sleep(5)
+        # elif 'search' in statement:
+        #     statement = statement.replace("search", "")
+        #     webbrowser.open_new_tab(statement)
+        #     time.sleep(5)
 
-        elif 'ask' in statement:
-            speak('I can answer to computational and geographical questions and what question do you want to ask now')
-            question = takeCommand()
-            app_id = "R2K75H-7ELALHR35X"
-            client = wolframalpha.Client('R2K75H-7ELALHR35X')
-            res = client.query(question)
-            answer = next(res.results).text
-            speak(answer)
-            print(answer)
+        # elif 'ask' in statement:
+        #     speak('I can answer to computational and geographical questions and what question do you want to ask now')
+        #     question = takeCommand()
+        #     app_id = "R2K75H-7ELALHR35X"
+        #     client = wolframalpha.Client('R2K75H-7ELALHR35X')
+        #     res = client.query(question)
+        #     answer = next(res.results).text
+        #     speak(answer)
+        #     print(answer)
 
         elif "log off" in statement or "sign out" in statement:
             speak(
