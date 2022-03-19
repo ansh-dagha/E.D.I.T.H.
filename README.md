@@ -1,1 +1,1 @@
-# AI-Assistant
+# F.R.I.D.A.Y.

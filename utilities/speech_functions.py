@@ -6,12 +6,12 @@ voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
 
 
-def speak_(text):
+def speak(text):
     engine.say(text)
     engine.runAndWait()
 
 
-def listen_():
+def listen():
     r = sr.Recognizer()
     
     with sr.Microphone() as source:
@@ -20,13 +20,11 @@ def listen_():
         audio = r.listen(source)
 
         try:
-            query = r.recognize_google(audio)
+            query = r.recognize_google(audio, language = 'en-in')
             print(query)
-            speak_(query)
+            speak(query)
 
         except Exception:
-            speak_('Sorry... I didn\'t get you')
+            speak('Sorry... I didn\'t get you')
             return None
     return query.lower()
-
-# listen_()
