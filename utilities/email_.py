@@ -11,7 +11,7 @@ def SEND_EMAIL(to,content):
     server = smtplib.SMTP('smtp.gmail.com', 587) # create a SMTP object for connection with server
     server.ehlo()
     server.starttls() #TLS connection required by gmail
-    server.login('testassisstant@gmail.com','maggi')
+    server.login('testassisstant@gmail.com','maggi000')
     server.sendmail('testassisstant@gmail.com',to,content) # from, to, content
 
 def sendEmail():
@@ -26,7 +26,7 @@ def sendEmail():
         content = listen()
         print("\nText:",content)
         speak("Email is ready to be sent.")
-        print("\nEmail is ready to be sent.", end=" ")
+        print("\nEmail is ready to be sent.")
         if confirm("Do you want me to proceed?", abort_txt="Okay. Email Discarded."):
             SEND_EMAIL(to,content)
             speak("Email has been sent")
