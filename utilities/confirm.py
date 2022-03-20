@@ -1,12 +1,13 @@
 from utilities.speech_functions import * 
 
-def confirm():
-    speak("Are you sure")
-    confirmation = listen()
-    if confirmation in ["yes", 'yep', 'ya', "yup", "do it", "send it", "proceed"]:
-        return True
-    elif confirmation in ["No","abort","cancel"]:
-        speak("Task Aborted")
-    else:
-        speak("I could not recognize what you just said")
-    return False
+def confirm(speech="Are you sure", abort_txt="Okay task aborted"):
+    speak(speech)
+    while True:
+        confirmation = listen()
+        if confirmation in ["yes", 'yep', 'ya', "yup", "do it", "send it", "proceed"]:
+            return True
+        elif confirmation in ["No","abort","cancel"]:
+            speak(abort_txt)
+            return False
+        else:
+            speak("I could not recognize what you just said")

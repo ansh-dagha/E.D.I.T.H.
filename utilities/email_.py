@@ -1,4 +1,5 @@
 from utilities.speech_functions import * 
+from utilities.confirm import *
 import smtplib
 
 contacts = {
@@ -16,29 +17,21 @@ def SEND_EMAIL(to,content):
 def sendEmail():
     try:
         speak("To whom should I send an email?")
+        print("\nTo whom should I send an email?",end='')
         to = listen()
         to = contacts[to] or to.replace(" ", "").replace("dot",".").replace("at","@")
         print("\nTo:",to)
-        speak("what should i say")
+        speak("What should i email?")
+        print("\nWhat should i email?")
         content = listen()
-        if content == "abort":
-            speak("Task Aborted")
-            return
         print("\nText:",content)
-        # to = dict[name]
-        speak("Email is ready to be sent. Do you want me to proceed?")
-        while True:
-            confirmation = listen()
-            if confirmation in ["Yes", "do it", "send it","proceed"]:
-                SEND_EMAIL(to,content)
-                print("Email has been sent")
-                break
-            elif confirmation in ["No","abort","cancel"]:
-                speak("Task Aborted")
-                break
-            else:
-                speak("I could not recognize what you just said")
-
+        speak("Email is ready to be sent.")
+        print("\nEmail is ready to be sent.", end=" ")
+        if confirm("Do you want me to proceed?", abort_txt="Okay. Email Discarded."):
+            SEND_EMAIL(to,content)
+            speak("Email has been sent")
+            print("Email has been sent")
+        
     except Exception as e:
         print(e)
-        speak("Sorry Unable to send the email at the moment Try again")
+        speak("Sorry Unable to send the email at the moment Try again later")
