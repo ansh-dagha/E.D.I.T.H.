@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 from googlesearch import search
 
-def searches(param):
+def search_for(param):
 
     for j in search(param, tld="com", num=1, stop=1, pause=2):
         print(j)

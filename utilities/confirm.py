@@ -3,7 +3,7 @@ from utilities.speech_functions import *
 def confirm():
     speak("Are you sure")
     confirmation = listen()
-    if confirmation in ["yes", 'yep', 'ya', "do it", "send it", "proceed"]:
+    if confirmation in ["yes", 'yep', 'ya', "yup", "do it", "send it", "proceed"]:
         return True
     elif confirmation in ["No","abort","cancel"]:
         speak("Task Aborted")

@@ -5,4 +5,4 @@ def execute(command):
     try:
         os.system(command)
     except:
-        speak("Cannot execute the command")
+        speak("Cannot execute the command!")

@@ -15,7 +15,6 @@ def SEND_EMAIL(to,content):
 
 def sendEmail():
     try:
-        print("\nTo whom should I send an email?")
         speak("To whom should I send an email?")
         to = listen()
         to = contacts[to] or to.replace(" ", "").replace("dot",".").replace("at","@")
@@ -27,13 +26,11 @@ def sendEmail():
             return
         print("\nText:",content)
         # to = dict[name]
-        print("\nEmail is ready to be sent. Do you want me to proceed?")
         speak("Email is ready to be sent. Do you want me to proceed?")
         while True:
             confirmation = listen()
             if confirmation in ["Yes", "do it", "send it","proceed"]:
                 SEND_EMAIL(to,content)
-                speak("Email has been sent")
                 print("Email has been sent")
                 break
             elif confirmation in ["No","abort","cancel"]:

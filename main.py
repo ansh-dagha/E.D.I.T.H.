@@ -1,9 +1,9 @@
 import datetime
-from utilities.searches import searches
+from utilities.websearch import search_for
 from utilities.speech_functions import *
 from utilities.email_ import *
 from utilities.powerOptions import *
-from utilities.processConfirmation import *
+from utilities.confirm import *
 from utilities.capture import *
 
 gender = ['Female', 'Male']
@@ -40,9 +40,9 @@ while True:
     
     if 'search' in statement:
         param = statement.replace("search", "")
-        searches(param)
+        search_for(param)
 
-    elif 'snapshot' or 'snip' or 'capture' in statement:
+    elif 'snapshot' in statement:
         snapshot()
     
     elif 'log off' in statement:
