@@ -1,4 +1,6 @@
+from urllib.parse import urlparse
 import webbrowser
+import re
 from utilities.speech_functions import * 
 import urllib
 import requests
@@ -62,7 +64,9 @@ def search_for(query):
         if not(desc==''):
             if len(desc) > 100:
                 text = desc.partition('.')[0] + '.'
-                result = "According to"+a['title'].split('-')[1]+" : "+text
+                t = urlparse(a['link']).netloc
+                titl=t.split('.')[-2:][0]
+                result = "According to "+titl+" : "+text
                 j=a['link']
                 break;
 
