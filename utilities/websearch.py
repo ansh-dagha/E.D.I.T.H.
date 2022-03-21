@@ -1,5 +1,5 @@
 import webbrowser
-from utilities.speech_functions import * 
+from speech_functions import * 
 import urllib
 import requests
 from requests_html import HTMLSession
