@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
-from PyQt5.QtGui import QImage, QPalette, QBrush
+from PyQt5.QtGui import QImage, QPalette, QBrush, QPixmap
 
 class LoginForm(QWidget):
     def __init__(self):
@@ -15,12 +15,12 @@ class LoginForm(QWidget):
         palette.setBrush(QPalette.Window, QBrush(scaled_background))                        
         self.setPalette(palette)
 
-        background = QPixmap('loginBackground.png').scaledToWidth(screen_width)
+        """ background = QPixmap('loginBackground.png').scaledToWidth(480)
         self.image = QLabel()
         self.image.setPixmap(background)
         layout = QHBoxLayout(widget)
         layout.setContentsMargins(0, 0, 0, 0)  # prevents margins around layouts
-        layout.addWidget(self.image)
+        layout.addWidget(self.image) """
 
         layout = QGridLayout()
 

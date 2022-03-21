@@ -54,6 +54,7 @@ def google_search(query):
 
 def search_for(query):
     results = google_search(query)
+    result = ''
     j=''
     # print(results)
     for a in results:
@@ -68,6 +69,7 @@ def search_for(query):
     print(result)
     speak(result)
     speak('Do you want to open the site?')
+    print('Do you want to open the site?')
     # ch = input('Do you want to open the site?(y/n)')
     while True:
         stat = listen()

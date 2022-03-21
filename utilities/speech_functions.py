@@ -21,7 +21,7 @@ def listen():
             
             try:
                 query = r.recognize_google(audio, language = 'en-in')
-                print("\nThis is what i heard:", query)
+                print("\nThis is what I heard:", query)
                 return query.lower()
             except Exception:
                 speak('Sorry... I didn\'t get you')
