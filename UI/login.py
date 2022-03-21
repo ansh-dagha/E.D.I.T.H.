@@ -9,11 +9,18 @@ class LoginForm(QWidget):
         self.setWindowTitle('Welcome')
         self.resize(480, 720)
 
-        background = QImage("image.png")
+        background = QImage("D:/SEM VI/MP/AI-Assistant/ui/loginBackground.png")
         scaled_background = background.scaled(QSize(480 ,720))
         palette = QPalette()
         palette.setBrush(QPalette.Window, QBrush(scaled_background))                        
         self.setPalette(palette)
+
+        background = QPixmap('loginBackground.png').scaledToWidth(screen_width)
+        self.image = QLabel()
+        self.image.setPixmap(background)
+        layout = QHBoxLayout(widget)
+        layout.setContentsMargins(0, 0, 0, 0)  # prevents margins around layouts
+        layout.addWidget(self.image)
 
         layout = QGridLayout()
 
