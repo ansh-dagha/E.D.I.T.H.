@@ -4,7 +4,9 @@ import re
 from utilities.speech_functions import * 
 import urllib
 import requests
+from utilities.confirm import *
 from requests_html import HTMLSession
+
 
 def parse_results(response):    
     css_identifier_result = ".tF2Cxc"
@@ -76,14 +78,26 @@ def search_for(query):
     print('Do you want to open the site?')
     # ch = input('Do you want to open the site?(y/n)')
     while True:
-        stat = listen()
-        if stat == None:
-            continue
-        if 'yes' in stat:
+        if confirm():
             webbrowser.open_new_tab(j)
             return
-        if 'no' in stat:
+        else:
             return
 
 
-
+def youtube(param):
+    chelen = param.split()
+    if len(chelen)>1:
+        param=param.replace(' ','+')
+    html = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + param)
+    video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
+    final = "https://www.youtube.com/watch?v=" + video_ids[0]
+    speak('Do you want to view on youtube?')
+    print('Do you want to view on youtube?')
+    # ch = input('Do you want to open the site?(y/n)')
+    while True:
+        if confirm():
+            webbrowser.open_new_tab(final)
+            return
+        else:
+            return

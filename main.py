@@ -1,6 +1,6 @@
 import datetime
 import webbrowser
-from utilities.websearch import search_for
+from utilities.websearch import search_for,youtube
 from utilities.speech_functions import *
 from utilities.email_ import *
 from utilities.powerOptions import *
@@ -58,6 +58,9 @@ while True:
         if confirm():
             execute("rundll32.exe powrprof.dll,SetSuspendState Sleep")
 
-    elif 'open youtube' or 'youtube' in statement:
+    elif 'open youtube' in statement:
         webbrowser.open_new_tab("https://www.youtube.com")
         speak("Youtube is open now")
+    elif 'play on youtube' in statement:
+        param = statement.replace("play on youtube", "")
+        youtube(param)
