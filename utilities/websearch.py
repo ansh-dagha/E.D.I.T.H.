@@ -1,11 +1,15 @@
 from urllib.parse import urlparse
 import webbrowser
 import re
+import lxml
+from lxml import etree
+from bs4 import BeautifulSoup
 from utilities.speech_functions import * 
 import urllib
 import requests
 from utilities.confirm import *
 from requests_html import HTMLSession
+from bs4 import BeautifulSoup as bs
 
 
 def parse_results(response):    
@@ -78,7 +82,8 @@ def search_for(query):
     print('Do you want to open the site?')
     # ch = input('Do you want to open the site?(y/n)')
     while True:
-        if confirm():
+        stat= listen()
+        if 'yes' in stat:
             webbrowser.open_new_tab(j)
             return
         else:
@@ -89,14 +94,30 @@ def youtube(param):
     chelen = param.split()
     if len(chelen)>1:
         param=param.replace(' ','+')
+    # print(param)
     html = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + param)
+    # print(html)
     video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
+    # print(video_ids)
     final = "https://www.youtube.com/watch?v=" + video_ids[0]
+    # print(final)
+    # youtube = etree.HTML(urllib.request.urlopen(final).read()) 
+    # title = youtube.xpath("//span[@id='eow-title']/@title")     
+    response = get_source(final)
+    # execute Javascript
+    response.html.render(sleep=1, timeout=60)
+    # create beautiful soup object to parse HTML
+    soup = bs(response.html.html, "html.parser")
+    title=soup.find("meta", itemprop="name")['content']
+    s="Found "+title
+    print(s)
+    speak(s)
     speak('Do you want to view on youtube?')
     print('Do you want to view on youtube?')
     # ch = input('Do you want to open the site?(y/n)')
     while True:
-        if confirm():
+        stat= listen()
+        if 'yes' in stat:
             webbrowser.open_new_tab(final)
             return
         else:
