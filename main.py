@@ -5,7 +5,7 @@ from utilities.speech_functions import *
 from utilities.email_ import *
 from utilities.powerOptions import *
 from utilities.confirm import *
-# from utilities.capture import *
+from utilities.capture import *
 
 gender = ['Female', 'Male']
 addressee = ['Sir', 'Miss', 'Boss']
@@ -61,6 +61,7 @@ while True:
     elif 'open youtube' in statement:
         webbrowser.open_new_tab("https://www.youtube.com")
         speak("Youtube is open now")
+    
     elif 'play on youtube' in statement:
         param = statement.replace("play on youtube ", "")
         youtube(param)

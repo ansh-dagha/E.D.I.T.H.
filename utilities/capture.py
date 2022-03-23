@@ -4,7 +4,7 @@ from utilities.speech_functions import *
 
 def snapshot():
     if not os.path.exists('images'):
-        os.makedirs('images')
+        os.makedirs('captures')
         filename = 'capture'
     else:
         path, dirs, files = next(os.walk("./images"))
