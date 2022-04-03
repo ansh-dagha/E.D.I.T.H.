@@ -20,7 +20,7 @@
    <string>Welcome Back</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(D:/SEM VI/MP/AI-Assistant/ui/images/loginBackground.png);</string>
+   <string notr="true"/>
   </property>
   <widget class="QPushButton" name="forgotpasswordButton">
    <property name="geometry">

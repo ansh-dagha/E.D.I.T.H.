@@ -3,13 +3,15 @@ from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
+import image_rc
 import sqlite3
 import hashlib
 
 class LoginScreen(QDialog):
     def __init__(self):
         super(LoginScreen, self).__init__()
-        loadUi('ui\login.ui',self)
+        loadUi('ui/login.ui',self)
+        self.setStyleSheet('background-image: url(:/images/loginBackground.png)')
         self.loginButton.clicked.connect(self.loginfunction)
 
     def loginfunction(self):

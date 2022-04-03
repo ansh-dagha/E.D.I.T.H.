@@ -1,5 +1,5 @@
-<RCC>
-  <qresource prefix="backgroundImage">
+<!DOCTYPE RCC><RCC version="1.0">
+  <qresource>
     <file>images/loginBackground.png</file>
   </qresource>
 </RCC>
