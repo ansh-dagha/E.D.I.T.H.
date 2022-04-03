@@ -35,6 +35,7 @@ while True:
 
     elif 'time' in statement:
         strTime = datetime.datetime.now().strftime("%I:%M:%p")
+        print(f"It\'s {strTime} right now")
         speak(f"It\'s {strTime} right now")
 
     elif 'email' in statement:
@@ -44,7 +45,7 @@ while True:
         param = statement.replace("search", "")
         search_for(param)
 
-    elif 'snapshot' or 'capture' or 'snap' or 'snip' in statement:
+    elif 'snapshot' in statement or 'snip' in statement or 'snap' in statement or 'screenshot' in statement:
         snapshot()
     
     elif 'log off' in statement:
@@ -88,6 +89,6 @@ while True:
         else:
             speak("Sorry City Not Found!")
 
-    # elif 'bye' or 'goodbye' in statement:
-    #     speak('See you soon Sir!')
-    #     break
+    elif 'bye' in statement or 'quit' in statement or 'goodbye' in statement:
+        speak('See you soon Sir!')
+        break

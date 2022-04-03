@@ -4,6 +4,7 @@ import smtplib
 
 contacts = {
     'ansh':"anshdagha@gmail.com",
+    'gayatri':"patilgayatri086@gmail.com",
     'mihir':"mihir.rh.19@gmail.com",
 }
 

@@ -6,7 +6,7 @@ def confirm(speech="Are you sure", abort_txt="Okay task aborted"):
         confirmation = listen()
         if confirmation in ["yes", 'yep', 'ya', "yup", "do it", "send it", "proceed"]:
             return True
-        elif confirmation in ["No","abort","cancel"]:
+        elif confirmation in ["no","abort","cancel","nope"]:
             speak(abort_txt)
             return False
         else:

@@ -78,16 +78,19 @@ def search_for(query):
 
     print(result)
     speak(result)
-    speak('Do you want to open the site?')
+    # speak('Do you want to open the site?')
     print('Do you want to open the site?')
     # ch = input('Do you want to open the site?(y/n)')
-    while True:
-        stat= listen()
-        if 'yes' in stat:
-            webbrowser.open_new_tab(j)
-            return
-        else:
-            return
+    if confirm(speech="Do you want to open the site?", abort_txt="Okay task aborted"):
+        webbrowser.open_new_tab(j)
+        return
+    # while True:
+    #     stat= listen()
+    #     if 'yes' in stat:
+    #         webbrowser.open_new_tab(j)
+    #         return
+    #     else:
+    #         return
 
 
 def youtube(param):
