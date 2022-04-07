@@ -7,16 +7,15 @@ import image_rc
 import sqlite3
 import hashlib
 
-class LoginScreen(QDialog):
+class SignupScreen(QDialog):
     def __init__(self):
-        super(LoginScreen, self).__init__()
-        loadUi('ui/login.ui',self)
+        super(SignupScreen, self).__init__()
+        loadUi('ui/signup.ui',self)
         self.setStyleSheet("background-image: url(:/images/loginBackground.png);")
-        self.loginButton.clicked.connect(self.loginfunction)
-        self.forgotpasswordButton.clicked.connect(self.forgotPassword)
         self.signupButton.clicked.connect(self.signupfunction)
+        self.loginButton.clicked.connect(self.loginfunction)
 
-    def loginfunction(self):
+    def signupfunction(self):
         username = self.inputUsername.text()
         password = self.inputPassword.text()
 
@@ -44,14 +43,12 @@ class LoginScreen(QDialog):
                 else:
                     self.errorLabel.setText('Incorrect password! Please try again.')
 
-    def forgotPassword(self):
-        print('forgot password')
-
-    def signupfunction(self):
+    def loginfunction(self):
         print('signup')
+    
 
 if __name__ == '__main__':
 	app = QApplication(sys.argv)
-	loginForm = LoginScreen()
+	loginForm = SignupScreen()
 	loginForm.show()
 	sys.exit(app.exec_())

@@ -1,5 +1,7 @@
-<!DOCTYPE RCC><RCC version="1.0">
+<RCC>
   <qresource>
+    <file>images/user-icon.png</file>
     <file>images/loginBackground.png</file>
+    <file>images/email-icon.jpg</file>
   </qresource>
 </RCC>
