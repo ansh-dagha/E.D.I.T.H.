@@ -1,7 +1,9 @@
 <RCC>
   <qresource>
-    <file>images/user-icon.png</file>
+    <file>images/repassword-icon.png</file>
+    <file>images/password-icon.png</file>
     <file>images/loginBackground.png</file>
     <file>images/email-icon.jpg</file>
+    <file>images/user-icon.png</file>
   </qresource>
 </RCC>

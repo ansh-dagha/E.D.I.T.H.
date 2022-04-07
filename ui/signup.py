@@ -13,6 +13,8 @@ import sqlite3
 import hashlib
 import re
 
+# python -m PyQt5.pyrcc_main image.qrc -o image_rc.py
+
 class SignupScreen(QDialog):
     def __init__(self):
         super(SignupScreen, self).__init__()

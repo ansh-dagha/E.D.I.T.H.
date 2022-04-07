@@ -25,7 +25,7 @@
   <widget class="QPushButton" name="forgotpasswordButton">
    <property name="geometry">
     <rect>
-     <x>730</x>
+     <x>750</x>
      <y>630</y>
      <width>150</width>
      <height>30</height>
@@ -64,7 +64,7 @@ border: none;
   <widget class="QPushButton" name="loginButton">
    <property name="geometry">
     <rect>
-     <x>730</x>
+     <x>750</x>
      <y>570</y>
      <width>400</width>
      <height>50</height>
@@ -88,7 +88,7 @@ border: none;
   <widget class="QLabel" name="termsLabel">
    <property name="geometry">
     <rect>
-     <x>810</x>
+     <x>830</x>
      <y>750</y>
      <width>240</width>
      <height>50</height>
@@ -143,16 +143,16 @@ border: none;
   <widget class="QLineEdit" name="inputEmail">
    <property name="geometry">
     <rect>
-     <x>730</x>
-     <y>320</y>
+     <x>750</x>
+     <y>310</y>
      <width>400</width>
-     <height>45</height>
+     <height>50</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>MS Sans Serif</family>
-     <pointsize>11</pointsize>
+     <family>Calibri Light</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="contextMenuPolicy">
@@ -164,6 +164,7 @@ color: white;
 background: #00000000;
 border: 1px solid white;
 border-radius: 5;
+padding-left: 50px;
 }
 
 QLineEdit:focus{
@@ -180,16 +181,16 @@ border: 2px solid #423BC8;
   <widget class="QLineEdit" name="inputPassword">
    <property name="geometry">
     <rect>
-     <x>730</x>
-     <y>390</y>
+     <x>750</x>
+     <y>380</y>
      <width>400</width>
-     <height>45</height>
+     <height>50</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>MS Sans Serif</family>
-     <pointsize>11</pointsize>
+     <family>Calibri Light</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="contextMenuPolicy">
@@ -201,6 +202,7 @@ color: white;
 background: #00000000;
 border: 1px solid white;
 border-radius: 5;
+padding-left: 50px;
 }
 
 QLineEdit:focus{
@@ -223,7 +225,7 @@ border: 2px solid #423BC8;
   <widget class="QLabel" name="edithLabel">
    <property name="geometry">
     <rect>
-     <x>780</x>
+     <x>800</x>
      <y>110</y>
      <width>300</width>
      <height>60</height>
@@ -257,7 +259,7 @@ border: 2px solid #423BC8;
   <widget class="QLabel" name="errorLabel">
    <property name="geometry">
     <rect>
-     <x>730</x>
+     <x>750</x>
      <y>520</y>
      <width>400</width>
      <height>30</height>
@@ -290,7 +292,7 @@ border: 2px solid #423BC8;
   <widget class="QPushButton" name="signupButton">
    <property name="geometry">
     <rect>
-     <x>990</x>
+     <x>1010</x>
      <y>700</y>
      <width>90</width>
      <height>30</height>
@@ -329,7 +331,7 @@ border: none;
   <widget class="QLabel" name="alreadyLabel">
    <property name="geometry">
     <rect>
-     <x>800</x>
+     <x>820</x>
      <y>700</y>
      <width>211</width>
      <height>30</height>
@@ -360,16 +362,16 @@ border: none;
   <widget class="QLineEdit" name="inputUsername">
    <property name="geometry">
     <rect>
-     <x>730</x>
-     <y>250</y>
+     <x>750</x>
+     <y>240</y>
      <width>400</width>
-     <height>45</height>
+     <height>50</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>MS Sans Serif</family>
-     <pointsize>11</pointsize>
+     <family>Calibri Light</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="contextMenuPolicy">
@@ -379,8 +381,9 @@ border: none;
     <string notr="true">QLineEdit{
 color: white; 
 background: #00000000;
-border: 1px solid white;
+border: 1px solid #ffffff;
 border-radius: 5;
+padding-left: 50px;
 }
 
 QLineEdit:focus{
@@ -397,16 +400,16 @@ border: 2px solid #423BC8;
   <widget class="QLineEdit" name="inputPassword_2">
    <property name="geometry">
     <rect>
-     <x>730</x>
-     <y>460</y>
+     <x>750</x>
+     <y>450</y>
      <width>400</width>
-     <height>45</height>
+     <height>50</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>MS Sans Serif</family>
-     <pointsize>11</pointsize>
+     <family>Calibri Light</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="contextMenuPolicy">
@@ -418,6 +421,7 @@ color: white;
 background: #00000000;
 border: 1px solid white;
 border-radius: 5;
+padding-left: 50px;
 }
 
 QLineEdit:focus{
@@ -437,6 +441,123 @@ border: 2px solid #423BC8;
     <enum>QLineEdit::Password</enum>
    </property>
   </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>760</x>
+     <y>250</y>
+     <width>30</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::RichText</enum>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="image.qrc">:/images/user-icon.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>760</x>
+     <y>390</y>
+     <width>30</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::RichText</enum>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="image.qrc">:/images/password-icon.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>760</x>
+     <y>320</y>
+     <width>30</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::RichText</enum>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="image.qrc">:/images/email-icon.jpg</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>760</x>
+     <y>460</y>
+     <width>30</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::RichText</enum>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="image.qrc">:/images/repassword-icon.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>710</x>
+     <y>-20</y>
+     <width>481</width>
+     <height>851</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::RichText</enum>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="image.qrc">:/images/loginBackground.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <zorder>label_5</zorder>
   <zorder>forgotpasswordButton</zorder>
   <zorder>loginButton</zorder>
   <zorder>termsLabel</zorder>
@@ -448,6 +569,10 @@ border: 2px solid #423BC8;
   <zorder>signupButton</zorder>
   <zorder>inputUsername</zorder>
   <zorder>inputPassword_2</zorder>
+  <zorder>label</zorder>
+  <zorder>label_2</zorder>
+  <zorder>label_3</zorder>
+  <zorder>label_4</zorder>
  </widget>
  <resources>
   <include location="image.qrc"/>
