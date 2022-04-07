@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>480</width>
-    <height>720</height>
+    <width>1200</width>
+    <height>840</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>480</width>
-    <height>720</height>
+    <width>1200</width>
+    <height>840</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -25,8 +25,8 @@
   <widget class="QPushButton" name="forgotpasswordButton">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>520</y>
+     <x>730</x>
+     <y>630</y>
      <width>150</width>
      <height>30</height>
     </rect>
@@ -64,8 +64,8 @@ border: none;
   <widget class="QPushButton" name="loginButton">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>460</y>
+     <x>730</x>
+     <y>570</y>
      <width>400</width>
      <height>50</height>
     </rect>
@@ -82,14 +82,14 @@ border: none;
     <string notr="true">background: #423BC8; color: white; border-radius: 8;</string>
    </property>
    <property name="text">
-    <string>Login</string>
+    <string>Sign Up</string>
    </property>
   </widget>
   <widget class="QLabel" name="termsLabel">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>640</y>
+     <x>810</x>
+     <y>750</y>
      <width>240</width>
      <height>50</height>
     </rect>
@@ -143,8 +143,8 @@ border: none;
   <widget class="QLineEdit" name="inputEmail">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>290</y>
+     <x>730</x>
+     <y>320</y>
      <width>400</width>
      <height>45</height>
     </rect>
@@ -180,8 +180,8 @@ border: 2px solid #423BC8;
   <widget class="QLineEdit" name="inputPassword">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>360</y>
+     <x>730</x>
+     <y>390</y>
      <width>400</width>
      <height>45</height>
     </rect>
@@ -223,7 +223,7 @@ border: 2px solid #423BC8;
   <widget class="QLabel" name="edithLabel">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>780</x>
      <y>110</y>
      <width>300</width>
      <height>60</height>
@@ -257,8 +257,8 @@ border: 2px solid #423BC8;
   <widget class="QLabel" name="errorLabel">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>410</y>
+     <x>730</x>
+     <y>520</y>
      <width>400</width>
      <height>30</height>
     </rect>
@@ -290,8 +290,8 @@ border: 2px solid #423BC8;
   <widget class="QPushButton" name="signupButton">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>590</y>
+     <x>990</x>
+     <y>700</y>
      <width>90</width>
      <height>30</height>
     </rect>
@@ -329,8 +329,8 @@ border: none;
   <widget class="QLabel" name="alreadyLabel">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>590</y>
+     <x>800</x>
+     <y>700</y>
      <width>211</width>
      <height>30</height>
     </rect>
@@ -360,8 +360,8 @@ border: none;
   <widget class="QLineEdit" name="inputUsername">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>220</y>
+     <x>730</x>
+     <y>250</y>
      <width>400</width>
      <height>45</height>
     </rect>
@@ -394,26 +394,47 @@ border: 2px solid #423BC8;
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLineEdit" name="inputPassword_2">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>230</y>
-     <width>25</width>
-     <height>25</height>
+     <x>730</x>
+     <y>460</y>
+     <width>400</width>
+     <height>45</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>MS Sans Serif</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::DefaultContextMenu</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit{
+color: white; 
+background: #00000000;
+border: 1px solid white;
+border-radius: 5;
+}
+
+QLineEdit:focus{
+border: 2px solid #423BC8;
+}
+
+
+</string>
+   </property>
+   <property name="inputMethodHints">
+    <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
    </property>
    <property name="text">
     <string/>
    </property>
-   <property name="textFormat">
-    <enum>Qt::RichText</enum>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="image.qrc">:/images/user-icon.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
    </property>
   </widget>
   <zorder>forgotpasswordButton</zorder>
@@ -426,7 +447,7 @@ border: 2px solid #423BC8;
   <zorder>alreadyLabel</zorder>
   <zorder>signupButton</zorder>
   <zorder>inputUsername</zorder>
-  <zorder>label</zorder>
+  <zorder>inputPassword_2</zorder>
  </widget>
  <resources>
   <include location="image.qrc"/>
