@@ -10,7 +10,7 @@ import hashlib
 class LoginScreen(QDialog):
     def __init__(self):
         super(LoginScreen, self).__init__()
-        loadUi('ui/login.ui',self)
+        loadUi('login.ui',self)
         self.setStyleSheet("background-image: url(:/images/loginBackground.png);")
         self.loginButton.clicked.connect(self.loginfunction)
         self.forgotpasswordButton.clicked.connect(self.forgotPassword)
