@@ -1,11 +1,14 @@
 import sys
+import os
+
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 import image_rc
 
-from database.db_functions import *
+sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'database'))
+from db_functions import *
 import hashlib
 import re
 
@@ -14,7 +17,8 @@ import re
 class SignupScreen(QDialog):
     def __init__(self):
         super(SignupScreen, self).__init__()
-        loadUi('ui\signup.ui',self)
+        signup_ui_path = os.path.join(os.path.dirname(sys.path[0]),'UI\\signup.ui')
+        loadUi(signup_ui_path, self)
         self.signupButton.clicked.connect(self.signupfunction)
         # self.loginButton.clicked.connect(self.loginfunction)
 

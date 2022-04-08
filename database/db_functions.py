@@ -1,6 +1,10 @@
 import sqlite3
+import sys
+import os
 
-conn = sqlite3.connect("database/assistant.db")
+db_path = os.path.join(os.path.dirname(sys.path[0]),'database\\assistant.db')
+conn = sqlite3.connect(db_path)
+
 c = conn.cursor()
 c.execute('''
     CREATE TABLE IF NOT EXISTS users
