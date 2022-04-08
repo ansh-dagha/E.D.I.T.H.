@@ -5,8 +5,7 @@ from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 import image_rc
 
-from db_functions import *
-import sqlite3
+from database.db_functions import *
 import hashlib
 import re
 
@@ -38,7 +37,7 @@ class SignupScreen(QDialog):
             self.errorLabel.setText(f"Username '{username}' already exists.")
             self.inputUsername.clear()
 
-        elif not bool(re.match("^[a-zA-Z0-9-_]+@[a-zA-Z0-9]+\.[a-z]{1,3}$",email)):
+        elif not bool(re.match("^[a-zA-Z0-9-_\.]+@[a-zA-Z0-9]+\.[a-z]{1,3}$",email)):
             self.errorLabel.setText("Enter a valid email.")
             self.inputEmail.clear()
 

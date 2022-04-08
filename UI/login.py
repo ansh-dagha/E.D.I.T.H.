@@ -5,10 +5,9 @@ from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 import image_rc
 
-from db_functions import *
-import sqlite3
+from database.db_functions import *
 import hashlib
-import re 
+import re
 
 class LoginScreen(QDialog):
     def __init__(self):
@@ -30,7 +29,7 @@ class LoginScreen(QDialog):
             self.errorLabel.setText("Please input all fields.")
 
         elif not userExists(username):
-            self.errorLabel.setText('Username doesn\'t exists! Kindly signup.')
+            self.errorLabel.setText("Username doesn't exists! Kindly signup.")
             self.inputUsername.clear()
             self.inputPassword.clear()
 

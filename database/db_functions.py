@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect("assistant.db")
+conn = sqlite3.connect("database/assistant.db")
 c = conn.cursor()
 c.execute('''
     CREATE TABLE IF NOT EXISTS users
