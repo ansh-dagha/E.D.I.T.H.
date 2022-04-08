@@ -1,11 +1,11 @@
 import sys
 import os
-
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 import image_rc
+import signup
 
 sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'database'))
 from db_functions import *
@@ -15,7 +15,7 @@ import re
 class LoginScreen(QDialog):
     def __init__(self):
         super(LoginScreen, self).__init__()
-        login_ui_path = os.path.join(os.path.dirname(sys.path[0]),'UI\\login.ui')
+        login_ui_path = os.path.join(os.path.dirname(sys.path[0]),'ui\\login.ui')
         loadUi(login_ui_path, self)
         self.loginButton.clicked.connect(self.loginfunction)
         self.forgotPasswordButton.clicked.connect(self.forgotPassword)
@@ -50,7 +50,9 @@ class LoginScreen(QDialog):
         print('forgot password')
 
     def signupfunction(self):
-        print('signup')
+        self.signup_ = signup.SignupScreen()
+        self.signup_.show()
+        self.close()
 
 
 if __name__ == '__main__':

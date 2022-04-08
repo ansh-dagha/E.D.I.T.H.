@@ -1,11 +1,11 @@
 import sys
 import os
-
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 import image_rc
+import login
 
 sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'database'))
 from db_functions import *
@@ -17,10 +17,10 @@ import re
 class SignupScreen(QDialog):
     def __init__(self):
         super(SignupScreen, self).__init__()
-        signup_ui_path = os.path.join(os.path.dirname(sys.path[0]),'UI\\signup.ui')
+        signup_ui_path = os.path.join(os.path.dirname(sys.path[0]),'ui\\signup.ui')
         loadUi(signup_ui_path, self)
         self.signupButton.clicked.connect(self.signupfunction)
-        # self.loginButton.clicked.connect(self.loginfunction)
+        self.loginButton.clicked.connect(self.loginfunction)
 
         self.setTabOrder(self.inputUsername, self.inputEmail)
         self.setTabOrder(self.inputEmail, self.inputPassword)
@@ -54,9 +54,13 @@ class SignupScreen(QDialog):
             password_hash = hashlib.sha3_512(password.encode()).hexdigest()
             addDetails(username, email, password_hash)
 
+    def loginfunction(self):
+        self.login_ = login.LoginScreen()
+        self.login_.show()
+        self.close()
             
 if __name__ == '__main__':
 	app = QApplication(sys.argv)
-	loginForm = SignupScreen()
-	loginForm.show()
+	signupForm = SignupScreen()
+	signupForm.show()
 	sys.exit(app.exec_())
