@@ -4,17 +4,23 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 import image_rc
+
+from db_functions import *
 import sqlite3
 import hashlib
+import re 
 
 class LoginScreen(QDialog):
     def __init__(self):
         super(LoginScreen, self).__init__()
-        loadUi('login.ui',self)
-        self.setStyleSheet("background-image: url(:/images/loginBackground.png);")
+        loadUi('ui\login.ui',self)
         self.loginButton.clicked.connect(self.loginfunction)
-        self.forgotpasswordButton.clicked.connect(self.forgotPassword)
+        self.forgotPasswordButton.clicked.connect(self.forgotPassword)
         self.signupButton.clicked.connect(self.signupfunction)
+
+        self.setTabOrder(self.inputUsername, self.inputPassword)
+        self.setTabOrder(self.inputPassword, self.loginButton)
+        self.setTabOrder(self.loginButton, self.forgotPasswordButton)
 
     def loginfunction(self):
         username = self.inputUsername.text()
@@ -23,32 +29,26 @@ class LoginScreen(QDialog):
         if len(username) == 0 or len(password) == 0:
             self.errorLabel.setText("Please input all fields.")
 
+        elif not userExists(username):
+            self.errorLabel.setText('Username doesn\'t exists! Kindly signup.')
+            self.inputUsername.clear()
+            self.inputPassword.clear()
+
         else:
             password_hash = hashlib.sha3_512(password.encode()).hexdigest()
-
-            conn = sqlite3.connect("assistant.db")
-            c = conn.cursor()
-        
-            c.execute("SELECT password FROM users WHERE username = ?", (username,))
-            result_pass = c.fetchone()
-
-            if result_pass == None:
-                print('Username doesn\'t exists')
-                self.errorLabel.setText('Username doesn\'t exists! Kindly signup.')
-                self.inputUsername.clear()
-                self.inputPassword.clear()
-
+            
+            if checkPassword(username, password_hash):
+                print("Successfully logged In.")
             else:
-                if result_pass[0] == password:
-                    print("Successfully logged In.")
-                else:
-                    self.errorLabel.setText('Incorrect password! Please try again.')
-
+                self.errorLabel.setText('Incorrect password! Please try again.')
+                self.inputPassword.clear()
+            
     def forgotPassword(self):
         print('forgot password')
 
     def signupfunction(self):
         print('signup')
+
 
 if __name__ == '__main__':
 	app = QApplication(sys.argv)
