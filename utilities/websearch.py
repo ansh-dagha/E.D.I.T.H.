@@ -11,6 +11,15 @@ from utilities.confirm import *
 from requests_html import HTMLSession
 from bs4 import BeautifulSoup as bs
 
+def checkconn():
+    try:
+        requests.get('https://www.google.com/').status_code
+        print('Connected')
+        return True
+    except:
+        print('Not Connected')
+        speak('Please connect to internet')
+        return False
 
 def parse_results(response):    
     css_identifier_result = ".tF2Cxc"
