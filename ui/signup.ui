@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>Login</class>
  <widget class="QDialog" name="Login">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -9,12 +12,6 @@
     <width>1200</width>
     <height>840</height>
    </rect>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>1200</width>
-    <height>840</height>
-   </size>
   </property>
   <property name="windowTitle">
    <string>Welcome Back</string>

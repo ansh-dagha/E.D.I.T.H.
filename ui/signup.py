@@ -1,7 +1,7 @@
 import sys
 import os
 from PyQt5.uic import loadUi
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 import image_rc
@@ -14,14 +14,24 @@ import re
 
 # python -m PyQt5.pyrcc_main image.qrc -o image_rc.py
 
+if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
+    QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
+
+if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
+    QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
+
 class SignupScreen(QDialog):
     def __init__(self):
         super(SignupScreen, self).__init__()
         signup_ui_path = os.path.join(os.path.dirname(sys.path[0]),'ui\\signup.ui')
         loadUi(signup_ui_path, self)
+
+        self.setWindowFlag(QtCore.Qt.WindowMinimizeButtonHint, True)
+        self.setWindowFlag(QtCore.Qt.WindowMaximizeButtonHint, True)
+
         self.signupButton.clicked.connect(self.signupfunction)
         self.loginButton.clicked.connect(self.loginfunction)
-
+        
         self.setTabOrder(self.inputUsername, self.inputEmail)
         self.setTabOrder(self.inputEmail, self.inputPassword)
         self.setTabOrder(self.inputPassword, self.inputConfirmPassword)
@@ -60,7 +70,10 @@ class SignupScreen(QDialog):
         self.close()
             
 if __name__ == '__main__':
-	app = QApplication(sys.argv)
-	signupForm = SignupScreen()
-	signupForm.show()
-	sys.exit(app.exec_())
+    os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
+    # os.environ["QT_SCALE_FACTOR"] = "1"
+    app = QApplication(sys.argv)
+
+    signupForm = SignupScreen()
+    signupForm.show()
+    sys.exit(app.exec_())

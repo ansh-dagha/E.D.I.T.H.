@@ -1,5 +1,6 @@
 <RCC>
   <qresource>
+    <file>images/speaker-icon.png</file>
     <file>images/login-background.png</file>
     <file>images/signup-background.png</file>
     <file>images/repassword-icon.png</file>
