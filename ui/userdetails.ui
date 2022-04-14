@@ -309,7 +309,7 @@ padding:20px;
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="termsLabel_2">
+  <widget class="QLabel" name="selectLabel">
    <property name="geometry">
     <rect>
      <x>190</x>
@@ -414,7 +414,7 @@ selection-background-color: #0d9ad6;
     </property>
    </item>
   </widget>
-  <widget class="QLabel" name="termsLabel_3">
+  <widget class="QLabel" name="addressLabel">
    <property name="geometry">
     <rect>
      <x>760</x>
@@ -478,9 +478,9 @@ selection-background-color: #0d9ad6;
   <zorder>radioButtonM</zorder>
   <zorder>radioButtonF</zorder>
   <zorder>playButton</zorder>
-  <zorder>termsLabel_2</zorder>
+  <zorder>selectLabel</zorder>
   <zorder>comboBox</zorder>
-  <zorder>termsLabel_3</zorder>
+  <zorder>addressLabel</zorder>
  </widget>
  <resources>
   <include location="image.qrc"/>
