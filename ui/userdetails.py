@@ -26,18 +26,21 @@ class UserDetails(QDialog):
         self.setWindowFlag(QtCore.Qt.WindowMinimizeButtonHint, True)
         self.setWindowFlag(QtCore.Qt.WindowMaximizeButtonHint, True)
 
-        self.radioButtonM.clicked.connect(lambda: self.playfunction(0))
-        self.radioButtonF.clicked.connect(lambda: self.playfunction(1))
-        self.playButton.clicked.connect(self.play)
+        self.radioButtonM.setChecked(True)
+        self.playButton.clicked.connect(self.playfunction)
+        self.continueButton.clicked.connect(self.continuefunction)
 
-    def playfunction(self, voice):
-        speak('Hello Sir, My name is EDITH.', voice)
-    
-    def play(self):
-        voice = 0
+    def playfunction(self, voice = 0):
         if self.radioButtonF.isChecked():
             voice = 1
-        speak('Hello Sir, My name is EDITH.', voice)
+        addressee = self.comboBox.currentText()
+        speak(f'Hello {addressee}, My name is EDITH.', voice)
+
+    def continuefunction(self):
+        voice = 0 if self.radioButtonM.isChecked() else 1
+        addressee = self.comboBox.currentText()
+
+        print(voice, addressee)
         
         
 if __name__ == '__main__':
