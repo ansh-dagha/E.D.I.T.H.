@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 import image_rc
 import login
+import userdetails
 
 sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'database'))
 from db_functions import *
@@ -27,7 +28,7 @@ class SignupScreen(QDialog):
         loadUi(signup_ui_path, self)
 
         self.setWindowFlag(QtCore.Qt.WindowMinimizeButtonHint, True)
-        self.setWindowFlag(QtCore.Qt.WindowMaximizeButtonHint, True)
+        # self.setWindowFlag(QtCore.Qt.WindowMaximizeButtonHint, True)
 
         self.signupButton.clicked.connect(self.signupfunction)
         self.loginButton.clicked.connect(self.loginfunction)
@@ -63,12 +64,16 @@ class SignupScreen(QDialog):
         else:   
             password_hash = hashlib.sha3_512(password.encode()).hexdigest()
             addDetails(username, email, password_hash)
+            self.details = userdetails.UserDetails(username=username)
+            self.details.show()
+            self.close()
 
     def loginfunction(self):
         self.login_ = login.LoginScreen()
         self.login_.show()
         self.close()
-            
+
+
 if __name__ == '__main__':
     os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
     # os.environ["QT_SCALE_FACTOR"] = "1"

@@ -139,6 +139,9 @@ border: 2px solid #0d9ad6;
    <property name="text">
     <string/>
    </property>
+   <property name="placeholderText">
+    <string>Email</string>
+   </property>
   </widget>
   <widget class="QLineEdit" name="inputPassword">
    <property name="geometry">
@@ -183,6 +186,9 @@ border: 2px solid #0d9ad6;
    </property>
    <property name="echoMode">
     <enum>QLineEdit::Password</enum>
+   </property>
+   <property name="placeholderText">
+    <string>Enter password</string>
    </property>
   </widget>
   <widget class="QLabel" name="edithLabel">
@@ -336,6 +342,9 @@ border: 2px solid #0d9ad6;
    <property name="text">
     <string/>
    </property>
+   <property name="placeholderText">
+    <string>Username</string>
+   </property>
   </widget>
   <widget class="QLineEdit" name="inputConfirmPassword">
    <property name="geometry">
@@ -380,6 +389,9 @@ border: 2px solid #0d9ad6;
    </property>
    <property name="echoMode">
     <enum>QLineEdit::Password</enum>
+   </property>
+   <property name="placeholderText">
+    <string>Repeat password</string>
    </property>
   </widget>
   <widget class="QLabel" name="user_icon">

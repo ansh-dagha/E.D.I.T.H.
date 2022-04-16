@@ -18,13 +18,15 @@ def speak(text, voice):
     engine.runAndWait()
 
 class UserDetails(QDialog):
-    def __init__(self):
+    def __init__(self, username = ''):
         super(UserDetails, self).__init__()
         details_ui_path = os.path.join(os.path.dirname(sys.path[0]),'ui\\userdetails.ui')
         loadUi(details_ui_path, self)
 
         self.setWindowFlag(QtCore.Qt.WindowMinimizeButtonHint, True)
-        self.setWindowFlag(QtCore.Qt.WindowMaximizeButtonHint, True)
+        # self.setWindowFlag(QtCore.Qt.WindowMaximizeButtonHint, True)
+
+        self.username = username
 
         self.radioButtonM.setChecked(True)
         self.playButton.clicked.connect(self.playfunction)
@@ -34,13 +36,14 @@ class UserDetails(QDialog):
         if self.radioButtonF.isChecked():
             voice = 1
         addressee = self.comboBox.currentText()
-        speak(f'Hello {addressee}, My name is EDITH.', voice)
+        speak(f'Hello {addressee}, My name is EDITH. I am your personal assistant', voice)
 
     def continuefunction(self):
         voice = 0 if self.radioButtonM.isChecked() else 1
         addressee = self.comboBox.currentText()
-
-        print(voice, addressee)
+        updatePreference(voice, addressee, self.username)
+        print('Successful')
+        
         
         
 if __name__ == '__main__':

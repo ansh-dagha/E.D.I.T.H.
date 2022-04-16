@@ -1,7 +1,7 @@
 import sys
 import os
 from PyQt5.uic import loadUi
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 import image_rc
@@ -17,6 +17,9 @@ class LoginScreen(QDialog):
         super(LoginScreen, self).__init__()
         login_ui_path = os.path.join(os.path.dirname(sys.path[0]),'ui\\login.ui')
         loadUi(login_ui_path, self)
+
+        self.setWindowFlag(QtCore.Qt.WindowMinimizeButtonHint, True)
+
         self.loginButton.clicked.connect(self.loginfunction)
         self.forgotPasswordButton.clicked.connect(self.forgotPassword)
         self.signupButton.clicked.connect(self.signupfunction)

@@ -8,7 +8,11 @@ conn = sqlite3.connect(db_path)
 c = conn.cursor()
 c.execute('''
     CREATE TABLE IF NOT EXISTS users
-    ([username] TEXT PRIMARY KEY, [email] NVARCHAR(255), [password] TEXT)
+    ([username] TEXT PRIMARY KEY,
+    [email] NVARCHAR(255),
+    [password] TEXT,
+    [voice] INTEGER DEFAULT 0,
+    [addressee] TEXT DEFAULT 'Boss')
     ''')
 
 def userExists(username):
@@ -20,8 +24,12 @@ def userExists(username):
         
 def addDetails(username, email, password_hash):
     # print(username, email, password_hash)
-    c.execute(''' INSERT INTO users VALUES
-                (?, ?, ?)''', (username, email, password_hash))
+    c.execute(''' INSERT INTO users (username, email, password) VALUES
+                (?, ?, ?)''', (username, email, password_hash, ))
+    conn.commit()
+
+def updatePreference(voice, addressee, username):
+    c.execute(''' UPDATE users SET voice=?, addressee=? WHERE username=?''', (voice, addressee, username,))
     conn.commit()
 
 def checkPassword(username, password_hash):
@@ -40,4 +48,4 @@ def checkPassword(username, password_hash):
 
 # c.execute(""" SELECT * FROM users """)
 
-# print(c.fetchone())
+# print(c.fetchall())
