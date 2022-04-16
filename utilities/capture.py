@@ -6,7 +6,6 @@ from utilities.speech_functions import *
 
 screenshot_folder = 'captures\\screenshots\\'
 camera_folder     = 'captures\\camera\\'
-cam = VideoCapture(0)
 
 if not os.path.exists(screenshot_folder):
     os.makedirs(screenshot_folder)
@@ -32,7 +31,9 @@ def camera():
     speak("Capturing Image in 3")
     speak("2")
     speak("1")
+    cam = VideoCapture(0)
     result, image = cam.read()
+    cam.release()
     if result:
         imwrite(camera_folder+filename+".jpg",image)
         print(camera_folder+filename+".jpg")
