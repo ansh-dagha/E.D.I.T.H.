@@ -7,7 +7,7 @@ from utilities.email_ import *
 from utilities.powerOptions import *
 from utilities.confirm import *
 from utilities.capture import *
-from utilities.conversational_util import *
+# from utilities.conversational_util import *
 
 gender = ['Female', 'Male']
 addressee = ['Sir', 'Miss', 'Boss']
@@ -103,14 +103,14 @@ while True:
         speak('See you soon Sir!')
         break
 
-    else:
-        if not history:
-            output, chat_history = converse(statement)
-            history = True
-            print(output)
-            speak(output)
-            continue
+    # else:
+    #     if not history:
+    #         output, chat_history = converse(statement)
+    #         history = True
+    #         print(output)
+    #         speak(output)
+    #         continue
         
-        output, chat_history = converse(statement, chat_history)
-        print(output)
-        speak(output)
+    #     output, chat_history = converse(statement, chat_history)
+    #     print(output)
+    #     speak(output)
