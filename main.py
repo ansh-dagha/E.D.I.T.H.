@@ -7,6 +7,7 @@ from utilities.email_ import *
 from utilities.powerOptions import *
 from utilities.confirm import *
 from utilities.capture import *
+from utilities.conversational_util import *
 
 gender = ['Female', 'Male']
 addressee = ['Sir', 'Miss', 'Boss']
@@ -22,13 +23,8 @@ def greet(addressee):
         speak(f'Good Evening {addressee}')
 
 greet(addressee[2])
+history = False
 
-WAKE = "hey tim"
-# if checkconn():
-#     # param = statement.replace("search", "")
-#     search_for('taj mahal')
-# else:
-#     print('no search')
 while True:
     
     statement = listen()
@@ -103,3 +99,15 @@ while True:
     elif 'bye' in statement or 'quit' in statement or 'goodbye' in statement:
         speak('See you soon Sir!')
         break
+
+    else:
+        if not history:
+            output, chat_history = converse(statement)
+            history = True
+            print(output)
+            speak(output)
+            continue
+        
+        output, chat_history = converse(statement, chat_history)
+        print(output)
+        speak(output)
