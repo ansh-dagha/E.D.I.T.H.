@@ -51,6 +51,9 @@ while True:
 
     elif 'snapshot' in statement or 'snip' in statement or 'snap' in statement or 'screenshot' in statement:
         snapshot()
+
+    elif 'picture' in statement or 'capture' in statement:
+        camera()
     
     elif 'log off' in statement:
         if confirm():
