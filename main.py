@@ -25,13 +25,17 @@ def greet(addressee):
 greet(addressee[2])
 
 WAKE = "hey edith"
-statement='list the top 10 songs'
-res = assis_response(statement)
-print(res)
+# statement='list the top 10 songs'
+# res = assis_response(statement)
+# print(res)
 
-# while True:
+while True:
     
-    # statement = listen()
+    if WAKE.count > 0:
+        statement = listen()
+        res = assis_response(statement)
+        print(res)
+        speak(res)
     
     
     # if statement == None:
