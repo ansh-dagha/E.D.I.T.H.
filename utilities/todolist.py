@@ -157,8 +157,9 @@ def to_do_list_remove_task(username):
 
 # add_to_list('Mihir', 'drink water', '27th april 2022', 'monday', '8 a.m.')
 # add_to_list('Mihir', 'complete mini project', '2nd may 2022', '23rd april', ' 11 1 p.m.')
-add_to_list('Mihir', 'watch movie', 'No due date', 'dont remind', 'dont remind')
+# add_to_list('Mihir', 'watch movie', 'No due date', 'dont remind', 'dont remind')
 
-# to_do_list_remove_task('Mihir')
+to_do_list_add_task(username = 'Mihir')
+# to_do_list_remove_task(username ='Mihir')
+# to_do_list_open(username ='Mihir')
 
-# to_do_list_open('Mihir')
