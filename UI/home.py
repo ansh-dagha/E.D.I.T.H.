@@ -1,8 +1,9 @@
-import sys
+import sys, os
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QMovie
 from PyQt5.QtCore import Qt
 
+gifs_dir = os.path.join(os.path.dirname(sys.path[0]),'ui\\gifs\\')
 
 class LoadingGif(object):
 
@@ -25,7 +26,7 @@ class LoadingGif(object):
         FrontWindow.setCentralWidget(self.centralwidget)
 
         # Loading the GIF
-        self.movie = QMovie("gifs/mic.gif")
+        self.movie = QMovie(gifs_dir+"mic.gif")
         self.label.setMovie(self.movie)
 
         self.startAnimation()
