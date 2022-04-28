@@ -64,6 +64,12 @@ def predict_class(sentence, model):
     return return_list
 
 def getResponse(return_list, intents_json):
+    list_of_intents= intents_json['intents']    
+    for i in list_of_intents:
+        if tag==i['tag']:
+            result = random.choice(i['responses'])
+    speak(result)
+    print(result)
     if len(return_list) == 0:
         tag = 'noanswer'
     else:
@@ -147,11 +153,8 @@ def getResponse(return_list, intents_json):
         learn('Gayatri')
         # word_update()
 
-    list_of_intents= intents_json['intents']    
-    for i in list_of_intents:
-        if tag==i['tag']:
-            result = random.choice(i['responses'])
-    return result
+    
+    # return result
 
 def assis_response(msg):
     ints = predict_class(msg, model)

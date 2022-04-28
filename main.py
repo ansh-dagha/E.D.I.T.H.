@@ -34,9 +34,10 @@ while True:
     if statement.count(WAKE) > 0:
         print("Assistant listening")
         statement = listen()
-        res = assis_response(statement)
-        print(res)
-        speak(res)
+        assis_response(statement)
+        # res = assis_response(statement)
+        # print(res)
+        # speak(res)
     
     
     # if statement == None:
