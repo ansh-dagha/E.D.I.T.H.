@@ -4,11 +4,12 @@ from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
-import image_rc
-import login
+from UI import image_rc
+from UI import login
 
 sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'database'))
-from db_functions import *
+print(sys.path[0])
+from database.db_functions import *
 import hashlib
 import re
 

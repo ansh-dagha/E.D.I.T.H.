@@ -18,7 +18,7 @@ from utilities.confirm import *
 # from utilities.capture import *
 import billboard
 import time
-import settings
+import settings as settings
 from pygame import mixer
 
 from keras.models import load_model

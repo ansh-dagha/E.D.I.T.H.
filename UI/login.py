@@ -4,19 +4,22 @@ from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
-import image_rc
-import signup
-import settings
+# from . import settings
+from UI import image_rc
+from UI import signup
+# from env.settings import *
 
-sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'database'))
-from db_functions import *
+settings_dir = sys.path.append(os.path.join(os.path.dirname(sys.path[0]),''))
+settings_dir = sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'database'))
+from database.db_functions import *
 import hashlib
 import re
+import settings
 
 class LoginScreen(QDialog):
     def __init__(self):
         super(LoginScreen, self).__init__()
-        login_ui_path = os.path.join(os.path.dirname(sys.path[0]),'ui\\login.ui')
+        login_ui_path = os.path.join(os.path.dirname(sys.path[0]),'AI-Assistant\\ui\\login.ui')
         loadUi(login_ui_path, self)
         self.loginButton.clicked.connect(self.loginfunction)
         self.forgotPasswordButton.clicked.connect(self.forgotPassword)
@@ -43,7 +46,10 @@ class LoginScreen(QDialog):
             
             if checkPassword(username, password_hash):
                 settings.init(username)
+                print(settings.profile)
                 print("Successfully logged In.")
+                self.close()
+                
             else:
                 self.errorLabel.setText('Incorrect password! Please try again.')
                 self.inputPassword.clear()
@@ -58,7 +64,8 @@ class LoginScreen(QDialog):
 
 
 if __name__ == '__main__':
-	app = QApplication(sys.argv)
-	loginForm = LoginScreen()
-	loginForm.show()
-	sys.exit(app.exec_())
+    app = QApplication(sys.argv)
+    loginForm = LoginScreen()
+    loginForm.show()
+    print('Hii')
+    sys.exit(app.exec_())

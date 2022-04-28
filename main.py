@@ -8,22 +8,26 @@ from utilities.powerOptions import *
 from utilities.confirm import *
 # from utilities.capture import *
 from Model.Respond import *
+from UI import login 
 
-gender = ['Female', 'Male']
-addressee = ['Sir', 'Miss', 'Boss']
+# gender = ['Female', 'Male']
+# addressee = ['Sir', 'Miss', 'Boss']
 
-def greet(addressee):
+# def greet(addressee):
     
-    hour = datetime.datetime.now().hour
-    if hour >= 0 and hour < 12:
-        speak(f'Good Morning {addressee}')
-    elif hour >= 12 and hour < 18:
-        speak(f'Good Afternoon {addressee}')
-    else:
-        speak(f'Good Evening {addressee}')
+#     hour = datetime.datetime.now().hour
+#     if hour >= 0 and hour < 12:
+#         speak(f'Good Morning {addressee}')
+#     elif hour >= 12 and hour < 18:
+#         speak(f'Good Afternoon {addressee}')
+#     else:
+#         speak(f'Good Evening {addressee}')
 
-greet(addressee[2])
-
+# greet(addressee[2])
+# login_ = login.LoginScreen()
+# login_.show()
+login.logs()
+# login_.close()
 WAKE = "hello"
 # statement='youtube'
 # res = assis_response(statement)
