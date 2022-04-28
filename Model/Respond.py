@@ -18,6 +18,7 @@ from utilities.confirm import *
 # from utilities.capture import *
 import billboard
 import time
+import settings
 from pygame import mixer
 
 from keras.models import load_model
@@ -150,7 +151,8 @@ def getResponse(return_list, intents_json):
         mixer.music.play()
     
     if tag=='remember':
-        learn('Gayatri')
+        print(settings.profile)
+        # learn(settings.profile)
         # word_update()
 
     
@@ -222,5 +224,6 @@ def learn(profile):
             'patterns': [ms],
             'responses': [rep]})
         
-    with open('Model/intents.json','w') as outfile:
+    filename="Model/"+profile+"intents.json"
+    with open(filename,'w') as outfile:
         outfile.write(json.dumps(intents,indent=4))

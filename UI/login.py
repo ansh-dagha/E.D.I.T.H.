@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QDialog, QApplication, QWidget
 from PyQt5.QtGui import QPixmap
 import image_rc
 import signup
+import settings
 
 sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'database'))
 from db_functions import *
@@ -41,6 +42,7 @@ class LoginScreen(QDialog):
             password_hash = hashlib.sha3_512(password.encode()).hexdigest()
             
             if checkPassword(username, password_hash):
+                settings.init(username)
                 print("Successfully logged In.")
             else:
                 self.errorLabel.setText('Incorrect password! Please try again.')
