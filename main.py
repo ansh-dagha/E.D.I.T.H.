@@ -24,14 +24,15 @@ def greet(addressee):
 
 greet(addressee[2])
 
-WAKE = "hey edith"
-# statement='list the top 10 songs'
+WAKE = "hello"
+# statement='youtube'
 # res = assis_response(statement)
 # print(res)
 
 while True:
-    
-    if WAKE.count > 0:
+    statement = listen()
+    if statement.count(WAKE) > 0:
+        print("Assistant listening")
         statement = listen()
         res = assis_response(statement)
         print(res)

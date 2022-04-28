@@ -1,4 +1,5 @@
 
+from operator import le
 import nltk
 from nltk.stem import WordNetLemmatizer
 lemmatizer = WordNetLemmatizer()
@@ -135,10 +136,16 @@ def getResponse(return_list, intents_json):
     
     if tag=='timer':        
         mixer.init()
-        x=input('Minutes to timer..')
+        speak('Minutes to timer..')
+        x=listen()
+        # x=input('Minutes to timer..')
         time.sleep(float(x)*60)
         mixer.music.load('Handbell-ringing-sound-effect.mp3')
         mixer.music.play()
+    
+    if tag=='remember':
+        learn('Gayatri')
+        # word_update()
 
     list_of_intents= intents_json['intents']    
     for i in list_of_intents:
@@ -152,22 +159,65 @@ def assis_response(msg):
     return res
 
 
-def learn():
+def word_update():
+    words=[]
+    classes = []
+    documents = []
+    ignore_words = ['?', '!']
+    data_file = open('Model/intents.json').read()
+    intents = json.loads(data_file)
+
+
+    for intent in intents['intents']:
+        for pattern in intent['patterns']:
+
+            # take each word and tokenize it
+            w = nltk.word_tokenize(pattern)
+            words.extend(w)
+            # adding documents
+            documents.append((w, intent['tag']))
+
+            # adding classes to our class list
+            if intent['tag'] not in classes:
+                classes.append(intent['tag'])
+
+    words = [lemmatizer.lemmatize(w.lower()) for w in words if w not in ignore_words]
+    words = sorted(list(set(words)))
+
+    classes = sorted(list(set(classes)))
+
+    # print (len(documents), "documents")
+
+    # print (len(classes), "classes", classes)
+
+    # print (len(words), "unique lemmatized words", words)
+
+
+    pickle.dump(words,open('Model/words.pkl','wb'))
+    pickle.dump(classes,open('Model/classes.pkl','wb'))
+
+def learn(profile):
     print('Help me Learn?')
-    tag=input('Please enter general category of your question  ')
+    speak('Please tell me the general category of your question')
+    # tag=input('Please enter general category of your question')
+    tag=listen()
+    speak('What sould I remember?')
+    ms = listen()
+    speak('What is your expected reply?')
+    rep = listen()
     flag=-1
     for i in range(len(intents['intents'])):
         if tag.lower() in intents['intents'][i]['tag']:
-            intents['intents'][i]['patterns'].append(input('Enter your message: '))
-            intents['intents'][i]['responses'].append(input('Enter expected reply: '))        
+            intents['intents'][i]['patterns'].append(ms)
+            intents['intents'][i]['responses'].append(rep)        
             flag=1
 
     if flag==-1:
         
         intents['intents'].append (
             {'tag':tag,
-            'patterns': [input('Please enter your message')],
-            'responses': [input('Enter expected reply')]})
+            'patterns': [ms],
+            'responses': [rep]})
         
-    with open('intents.json','w') as outfile:
+    with open('Model/intents.json','w') as outfile:
         outfile.write(json.dumps(intents,indent=4))
