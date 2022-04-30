@@ -7,7 +7,6 @@ import pickle
 import numpy as np
 import random
 import datetime
-# from googlesearch import *
 import webbrowser
 import requests
 from utilities.speech_functions import *
@@ -15,11 +14,14 @@ from utilities.websearch import search_for,youtube,checkconn
 from utilities.email_ import *
 from utilities.powerOptions import *
 from utilities.confirm import *
+from utilities.conversational_util import *
+from utilities.weather import *
+from utilities.news import *
+from utilities.songs import *
 # from utilities.capture import *
 import billboard
 import time
 import settings as settings
-from pygame import mixer
 
 from keras.models import load_model
 model = load_model('Model/chatbot_model.h5')
@@ -28,7 +30,19 @@ import random
 intents = json.loads(open('Model/intents.json').read())
 words = pickle.load(open('Model/words.pkl','rb'))
 classes = pickle.load(open('Model/classes.pkl','rb'))
+history = False
 
+
+act_dict={'datetime':date(),
+'google':search_for(),
+'youtube':youtube(),
+'email':sendEmail(),
+'chat':chatting(),
+'remember':learn(),
+'song':songs(),
+'news':news(),
+'weather':weather()
+}
 
 def clean_up_sentence(sentence):
     sentence_words = nltk.word_tokenize(sentence)
@@ -65,98 +79,49 @@ def predict_class(sentence, model):
     return return_list
 
 def getResponse(return_list, intents_json):
+    if len(return_list) == 0:
+        tag = 'noanswer'
+    else:
+        tag = return_list[0]['intent']
+
     list_of_intents= intents_json['intents']    
     for i in list_of_intents:
         if tag==i['tag']:
             result = random.choice(i['responses'])
     speak(result)
     print(result)
-    if len(return_list) == 0:
-        tag = 'noanswer'
-    else:
-        tag = return_list[0]['intent']
-    
-    if tag=='datetime':        
-        strTime = datetime.datetime.now().strftime("%I:%M:%p")
-        print(f"It\'s {strTime} right now")
-        speak(f"It\'s {strTime} right now")
 
-    if tag=='email':
-        if checkconn():
-            sendEmail()
+    if tag in act_dict.keys():
+        act_dict[tag]
 
-    if tag == 'youtube':
-        if checkconn():
-            print("What should I play?")
-            param = listen()
-            youtube(param)
+    # if tag=='datetime':        
+    #     date()
 
-    if tag=='google':
-        if checkconn():
-            print("What should I search for?")
-            speak("What should I search for?")
-            statement = listen()
-            param = statement.replace("search", "")
-            search_for(param)
-    
-    if tag=='weather':
-        if checkconn():
-            api_key = "8ef61edcf1c576d65d836254e11ea420"
-            base_url = "https://api.openweathermap.org/data/2.5/weather?"
-            speak("Which city sir?")
-            city_name = listen()
-            complete_url = base_url+"appid="+api_key+"&q="+city_name
-            response = requests.get(complete_url)
-            x = response.json()
-            if x["cod"] != "404":
-                y = x["main"]
-                temperature = y["temp"] - 273.15
-                temperature = round(temperature)
-                humidity = y["humidity"]
-                z = x["weather"]
-                weather_description = z[0]["description"].capitalize()
-                print(f'Temperature = {temperature} C \nHumidity = {humidity}% \nDescription: {weather_description}')
-                speak(f'It\'s {temperature} degree celsius and {weather_description} \n Humidity is {humidity}%')
+    # if tag=='email':
+    #     if checkconn():
+    #         sendEmail()
 
-            else:
-                speak("Sorry City Not Found!")
+    # if tag == 'youtube':
+    #     youtube()
 
-    if tag == 'news':
-        main_url = " http://newsapi.org/v2/top-headlines?country=in&apiKey=bc88c2e1ddd440d1be2cb0788d027ae2"
-        open_news_page = requests.get(main_url).json()
-        article = open_news_page["articles"]
-        results = [] 
-          
-        for ar in article: 
-            results.append([ar["title"],ar["url"]]) 
-          
-        for i in range(10): 
-            print(i + 1, results[i][0])
-            print(results[i][1],'\n')
+    # if tag=='google':
+    #     search_for()
     
-    if tag=='song':
-        chart=billboard.ChartData('hot-100')
-        print('The top 10 songs at the moment are:')
-        for i in range(10):
-            song=chart[i]
-            print(song.title,'- ',song.artist)
-    
-    if tag=='timer':        
-        mixer.init()
-        speak('Minutes to timer..')
-        x=listen()
-        # x=input('Minutes to timer..')
-        time.sleep(float(x)*60)
-        mixer.music.load('Handbell-ringing-sound-effect.mp3')
-        mixer.music.play()
-    
-    if tag=='remember':
-        print(settings.profile)
-        # learn(settings.profile)
-        # word_update()
+    # if tag=='weather':
+    #     weather()        
 
+    # if tag == 'news':
+    #     news()
     
-    # return result
+    # if tag=='song':
+    #     songs()
+    
+    # if tag=='remember':
+    #     print(settings.profile)
+    #     # learn(settings.profile)
+
+    # if tag=='chat':
+        
 
 def assis_response(msg):
     ints = predict_class(msg, model)
@@ -164,47 +129,9 @@ def assis_response(msg):
     return res
 
 
-def word_update():
-    words=[]
-    classes = []
-    documents = []
-    ignore_words = ['?', '!']
-    data_file = open('Model/intents.json').read()
-    intents = json.loads(data_file)
-
-
-    for intent in intents['intents']:
-        for pattern in intent['patterns']:
-
-            # take each word and tokenize it
-            w = nltk.word_tokenize(pattern)
-            words.extend(w)
-            # adding documents
-            documents.append((w, intent['tag']))
-
-            # adding classes to our class list
-            if intent['tag'] not in classes:
-                classes.append(intent['tag'])
-
-    words = [lemmatizer.lemmatize(w.lower()) for w in words if w not in ignore_words]
-    words = sorted(list(set(words)))
-
-    classes = sorted(list(set(classes)))
-
-    # print (len(documents), "documents")
-
-    # print (len(classes), "classes", classes)
-
-    # print (len(words), "unique lemmatized words", words)
-
-
-    pickle.dump(words,open('Model/words.pkl','wb'))
-    pickle.dump(classes,open('Model/classes.pkl','wb'))
-
 def learn(profile):
     print('Help me Learn?')
     speak('Please tell me the general category of your question')
-    # tag=input('Please enter general category of your question')
     tag=listen()
     speak('What sould I remember?')
     ms = listen()
@@ -227,3 +154,25 @@ def learn(profile):
     filename="Model/"+profile+"intents.json"
     with open(filename,'w') as outfile:
         outfile.write(json.dumps(intents,indent=4))
+
+
+def chatting():
+    while True:
+            statement=listen()
+            if not history:
+                output, chat_history = converse(statement)
+                history = True
+                print(output)
+                speak(output)
+                continue
+            
+            output, chat_history = converse(statement, chat_history)
+            print(output)
+            speak(output)
+            if statement in ['Stop','Bye','End','Quit']:
+                break
+
+def date():
+    strTime = datetime.datetime.now().strftime("%I:%M:%p")
+    print(f"It\'s {strTime} right now")
+    speak(f"It\'s {strTime} right now")

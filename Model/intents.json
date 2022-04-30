@@ -404,21 +404,12 @@
             ]
         },
         {
-            "tag": "food",
+            "tag": "chat",
             "patterns": [
-                "my favourite food"
+                "let's chat","talk to me","can we chat?","can we talk","tell me something","entertain me"
             ],
             "responses": [
-                "pizza"
-            ]
-        },
-        {
-            "tag": "places",
-            "patterns": [
-                "i have visited"
-            ],
-            "responses": [
-                "hong kong"
+                "Getting ready to chat....","Okay","What do you want to talk about?","Let's start then"
             ]
         }
     ]
