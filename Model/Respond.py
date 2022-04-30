@@ -1,5 +1,3 @@
-
-from operator import le
 import nltk
 from nltk.stem import WordNetLemmatizer
 lemmatizer = WordNetLemmatizer()
@@ -7,20 +5,16 @@ import pickle
 import numpy as np
 import random
 import datetime
-import webbrowser
-import requests
 from utilities.speech_functions import *
-from utilities.websearch import search_for,youtube,checkconn
+from utilities.websearch import search_for,youtube
 from utilities.email_ import *
 from utilities.powerOptions import *
 from utilities.confirm import *
-from utilities.conversational_util import *
+# from utilities.conversational_util import *
 from utilities.weather import *
 from utilities.news import *
 from utilities.songs import *
 # from utilities.capture import *
-import billboard
-import time
 import settings as settings
 
 from keras.models import load_model
@@ -32,16 +26,46 @@ words = pickle.load(open('Model/words.pkl','rb'))
 classes = pickle.load(open('Model/classes.pkl','rb'))
 history = False
 
+def date():
+    strTime = datetime.datetime.now().strftime("%I:%M:%p")
+    print(f"It\'s {strTime} right now")
+    speak(f"It\'s {strTime} right now")
 
-act_dict={'datetime':date(),
-'google':search_for(),
-'youtube':youtube(),
-'email':sendEmail(),
-'chat':chatting(),
-'remember':learn(),
-'song':songs(),
-'news':news(),
-'weather':weather()
+def learn(profile):
+    print('Help me Learn?')
+    speak('Please tell me the general category of your question')
+    tag=listen()
+    speak('What sould I remember?')
+    ms = listen()
+    speak('What is your expected reply?')
+    rep = listen()
+    flag=-1
+    for i in range(len(intents['intents'])):
+        if tag.lower() in intents['intents'][i]['tag']:
+            intents['intents'][i]['patterns'].append(ms)
+            intents['intents'][i]['responses'].append(rep)        
+            flag=1
+
+    if flag==-1:
+        
+        intents['intents'].append (
+            {'tag':tag,
+            'patterns': [ms],
+            'responses': [rep]})
+        
+    filename="Model/"+profile+"intents.json"
+    with open(filename,'w') as outfile:
+        outfile.write(json.dumps(intents,indent=4))
+
+
+act_dict={'datetime':date,
+'google':search_for,
+'youtube':youtube,
+'email':sendEmail,
+'remember':learn,
+'song':songs,
+'news':news,
+'weather':weather
 }
 
 def clean_up_sentence(sentence):
@@ -83,6 +107,7 @@ def getResponse(return_list, intents_json):
         tag = 'noanswer'
     else:
         tag = return_list[0]['intent']
+    print(tag)
 
     list_of_intents= intents_json['intents']    
     for i in list_of_intents:
@@ -92,68 +117,13 @@ def getResponse(return_list, intents_json):
     print(result)
 
     if tag in act_dict.keys():
-        act_dict[tag]
+        act_dict[tag]()
+        return
 
-    # if tag=='datetime':        
-    #     date()
-
-    # if tag=='email':
-    #     if checkconn():
-    #         sendEmail()
-
-    # if tag == 'youtube':
-    #     youtube()
-
-    # if tag=='google':
-    #     search_for()
-    
-    # if tag=='weather':
-    #     weather()        
-
-    # if tag == 'news':
-    #     news()
-    
-    # if tag=='song':
-    #     songs()
-    
-    # if tag=='remember':
-    #     print(settings.profile)
-    #     # learn(settings.profile)
-
-    # if tag=='chat':
-        
 
 def assis_response(msg):
     ints = predict_class(msg, model)
-    res = getResponse(ints, intents)
-    return res
-
-
-def learn(profile):
-    print('Help me Learn?')
-    speak('Please tell me the general category of your question')
-    tag=listen()
-    speak('What sould I remember?')
-    ms = listen()
-    speak('What is your expected reply?')
-    rep = listen()
-    flag=-1
-    for i in range(len(intents['intents'])):
-        if tag.lower() in intents['intents'][i]['tag']:
-            intents['intents'][i]['patterns'].append(ms)
-            intents['intents'][i]['responses'].append(rep)        
-            flag=1
-
-    if flag==-1:
-        
-        intents['intents'].append (
-            {'tag':tag,
-            'patterns': [ms],
-            'responses': [rep]})
-        
-    filename="Model/"+profile+"intents.json"
-    with open(filename,'w') as outfile:
-        outfile.write(json.dumps(intents,indent=4))
+    getResponse(ints, intents)
 
 
 def chatting():
@@ -172,7 +142,3 @@ def chatting():
             if statement in ['Stop','Bye','End','Quit']:
                 break
 
-def date():
-    strTime = datetime.datetime.now().strftime("%I:%M:%p")
-    print(f"It\'s {strTime} right now")
-    speak(f"It\'s {strTime} right now")
