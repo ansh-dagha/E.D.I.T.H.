@@ -69,68 +69,60 @@ def google_search(query):
     response = get_results(query)
     return parse_results(response)
 
-def search_for(query):
-    results = google_search(query)
-    result = ''
-    j=''
-    # print(results)
-    for a in results:
-        desc= a['text']
-        if not(desc==''):
-            if len(desc) > 100:
-                text = desc.partition('.')[0] + '.'
-                t = urlparse(a['link']).netloc
-                titl=t.split('.')[-2:][0]
-                result = "According to "+titl+" : "+text
-                j=a['link']
-                break;
+def search_for():
+    if checkconn():
+        print("What should I search for?")
+        speak("What should I search for?")
+        statement = listen()
+        query = statement.replace("search", "")
+        results = google_search(query)
+        result = ''
+        j=''
+        # print(results)
+        for a in results:
+            desc= a['text']
+            if not(desc==''):
+                if len(desc) > 100:
+                    text = desc.partition('.')[0] + '.'
+                    t = urlparse(a['link']).netloc
+                    titl=t.split('.')[-2:][0]
+                    result = "According to "+titl+" : "+text
+                    j=a['link']
+                    break;
 
-    print(result)
-    speak(result)
-    # speak('Do you want to open the site?')
-    print('Do you want to open the site?')
-    # ch = input('Do you want to open the site?(y/n)')
-    if confirm(speech="Do you want to open the site?", abort_txt="Okay task aborted"):
-        webbrowser.open_new_tab(j)
-        return
-    # while True:
-    #     stat= listen()
-    #     if 'yes' in stat:
-    #         webbrowser.open_new_tab(j)
-    #         return
-    #     else:
-    #         return
-
-
-def youtube(param):
-    chelen = param.split()
-    if len(chelen)>1:
-        param=param.replace(' ','+')
-    # print(param)
-    html = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + param)
-    # print(html)
-    video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
-    # print(video_ids)
-    final = "https://www.youtube.com/watch?v=" + video_ids[0]
-    # print(final)
-    # youtube = etree.HTML(urllib.request.urlopen(final).read()) 
-    # title = youtube.xpath("//span[@id='eow-title']/@title")     
-    response = get_source(final)
-    # execute Javascript
-    response.html.render(sleep=1, timeout=60)
-    # create beautiful soup object to parse HTML
-    soup = bs(response.html.html, "html.parser")
-    title=soup.find("meta", itemprop="name")['content']
-    s="Found "+title
-    print(s)
-    speak(s)
-    speak('Do you want to view on youtube?')
-    print('Do you want to view on youtube?')
-    # ch = input('Do you want to open the site?(y/n)')
-    while True:
-        stat= listen()
-        if 'yes' in stat:
-            webbrowser.open_new_tab(final)
+        print(result)
+        speak(result)
+        print('Do you want to open the site?')
+        if confirm(speech="Do you want to open the site?", abort_txt="Okay task aborted"):
+            webbrowser.open_new_tab(j)
             return
-        else:
-            return
+
+
+def youtube():
+    if checkconn():
+        print("What should I play?")
+        param = listen()
+        chelen = param.split()
+        if len(chelen)>1:
+            param=param.replace(' ','+')
+        html = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + param)
+        video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
+        final = "https://www.youtube.com/watch?v=" + video_ids[0]   
+        response = get_source(final)
+        # execute Javascript
+        response.html.render(sleep=1, timeout=60)
+        # create beautiful soup object to parse HTML
+        soup = bs(response.html.html, "html.parser")
+        title=soup.find("meta", itemprop="name")['content']
+        s="Found "+title
+        print(s)
+        speak(s)
+        speak('Do you want to view on youtube?')
+        print('Do you want to view on youtube?')
+        while True:
+            stat= listen()
+            if 'yes' in stat:
+                webbrowser.open_new_tab(final)
+                return
+            else:
+                return

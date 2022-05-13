@@ -2,7 +2,8 @@ import sqlite3
 import sys
 import os
 
-db_path = os.path.join(os.path.dirname(sys.path[0]),'database\\assistant.db')
+db_path = os.path.join(os.path.dirname(sys.path[0]),'AI-Assistant\\database\\assistant.db')
+print(db_path)
 conn = sqlite3.connect(db_path)
 
 c = conn.cursor()

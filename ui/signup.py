@@ -9,7 +9,8 @@ import login
 import userdetails
 
 sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'database'))
-from db_functions import *
+print(sys.path[0])
+from database.db_functions import *
 import hashlib
 import re
 
