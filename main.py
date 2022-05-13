@@ -20,13 +20,13 @@ def greet(addressee):
     else:
         speak(f'Good Evening {addressee}')
 
-greet(addressee[2])
+
 # login_ = login.LoginScreen()
 # login_.show()
 # login.logs()
 # login_.close()
 WAKE = "hello"
-
+greet(addressee[2])
 while True:
     # print('hello')
     statement = listen()
