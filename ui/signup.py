@@ -1,17 +1,19 @@
+import imp
 import sys
 import os
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QAction
 from PyQt5.QtGui import QPixmap
-import ui.image_rc
-import ui.userdetails as usr
+import UI.image_rc
+import UI.userdetails as usr
 
 settings_dir = sys.path.append(os.path.join(os.path.dirname(sys.path[0]),''))
 settings_dir = sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'database'))
 from database.db_functions import *
 import hashlib
 import re
+from utilities.modelfile import create_intents
 
 app = QApplication(sys.argv)
 
@@ -70,6 +72,7 @@ class SignupScreen(QDialog):
 
         else:
             self.username = username
+            create_intents(username)
             password_hash = hashlib.sha3_512(password.encode()).hexdigest()
             addDetails(username, email, password_hash)
             self.details = usr.UserDetails(username=username)

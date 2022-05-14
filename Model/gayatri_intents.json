@@ -406,10 +406,38 @@
         {
             "tag": "chat",
             "patterns": [
-                "let's chat","talk to me","can we chat?","can we talk","tell me something","entertain me"
+                "let's chat",
+                "talk to me",
+                "can we chat?",
+                "can we talk",
+                "tell me something",
+                "entertain me"
             ],
             "responses": [
-                "Getting ready to chat....","Okay","What do you want to talk about?","Let's start then"
+                "Getting ready to chat....",
+                "Okay",
+                "What do you want to talk about?",
+                "Let's start then"
+            ]
+        },
+        {
+            "tag": "my favourite colour",
+            "patterns": [
+                "my favourite colour",
+                "my favourite colour"
+            ],
+            "responses": [
+                "favourite colour is pink",
+                "favourite colour is pink"
+            ]
+        },
+        {
+            "tag": "my favourite food is",
+            "patterns": [
+                "my favourite food is"
+            ],
+            "responses": [
+                "you like pizza"
             ]
         }
     ]

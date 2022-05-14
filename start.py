@@ -1,6 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication
-from ui import login, signup
+from UI import login, signup
 
 # app = QApplication(sys.argv)
 login_ = login.LoginScreen()

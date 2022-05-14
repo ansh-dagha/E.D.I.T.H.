@@ -4,7 +4,7 @@ from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QAction
 from PyQt5.QtGui import QPixmap
-import ui.image_rc
+import UI.image_rc
 
 settings_dir = sys.path.append(os.path.join(os.path.dirname(sys.path[0]),''))
 settings_dir = sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'database'))
