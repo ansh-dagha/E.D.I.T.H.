@@ -5,7 +5,7 @@ from utilities.powerOptions import *
 from utilities.confirm import *
 # from utilities.capture import *
 from Model.Respond import assis_response
-from UI import login 
+# from UI import login 
 
 gender = ['Female', 'Male']
 addressee = ['Sir', 'Miss', 'Boss']
@@ -32,7 +32,8 @@ while True:
     statement = listen()
     if statement.count(WAKE) > 0:
         stat = statement.replace('hello','')
-        assis_response(statement)
+        profile='gayatri'
+        assis_response(statement,profile)
         # res = assis_response(statement)
         # print(res)
         # speak(res)

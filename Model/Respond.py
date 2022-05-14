@@ -16,12 +16,11 @@ from utilities.news import *
 from utilities.songs import *
 # from utilities.capture import *
 import settings as settings
-
+from Model.train import training_model
 from keras.models import load_model
-model = load_model('Model/chatbot_model.h5')
 import json
 import random
-intents = json.loads(open('Model/intents.json').read())
+model = load_model('Model/chatbot_model.h5')
 words = pickle.load(open('Model/words.pkl','rb'))
 classes = pickle.load(open('Model/classes.pkl','rb'))
 history = False
@@ -31,14 +30,14 @@ def date():
     print(f"It\'s {strTime} right now")
     speak(f"It\'s {strTime} right now")
 
-def learn(profile):
+def learn(profile,intents):
+    # global model,words,classes
     print('Help me Learn?')
-    speak('Please tell me the general category of your question')
-    tag=listen()
-    speak('What sould I remember?')
+    speak('What should I remember?')
     ms = listen()
     speak('What is your expected reply?')
     rep = listen()
+    tag=ms
     flag=-1
     for i in range(len(intents['intents'])):
         if tag.lower() in intents['intents'][i]['tag']:
@@ -53,19 +52,23 @@ def learn(profile):
             'patterns': [ms],
             'responses': [rep]})
         
-    filename="Model/"+profile+"intents.json"
+    filename="Model/"+profile+"_intents.json"
     with open(filename,'w') as outfile:
         outfile.write(json.dumps(intents,indent=4))
+    
+    training_model(filename)
+    # model = load_model('Model/chatbot_model.h5')
+    # words = pickle.load(open('Model/words.pkl','rb'))
+    # classes = pickle.load(open('Model/classes.pkl','rb'))
 
 
 act_dict={'datetime':date,
 'google':search_for,
 'youtube':youtube,
 'email':sendEmail,
-'remember':learn,
 'song':songs,
 'news':news,
-'weather':weather
+'weather':weather,
 }
 
 def clean_up_sentence(sentence):
@@ -89,7 +92,7 @@ def bow(sentence, words, show_details=True):
                     print ("found in bag: %s" % w)
     return(np.array(bag))
 
-def predict_class(sentence, model):
+def predict_class(sentence,model):
     # filter out predictions below a threshold
     p = bow(sentence, words,show_details=False)
     res = model.predict(np.array([p]))[0]
@@ -102,7 +105,8 @@ def predict_class(sentence, model):
         return_list.append({"intent": classes[r[0]], "probability": str(r[1])})
     return return_list
 
-def getResponse(return_list, intents_json):
+def getResponse(return_list, intents_json,profile):
+    result=''
     if len(return_list) == 0:
         tag = 'noanswer'
     else:
@@ -119,11 +123,15 @@ def getResponse(return_list, intents_json):
     if tag in act_dict.keys():
         act_dict[tag]()
         return
+    elif tag =='learn':
+        learn(profile,intents_json)
 
 
-def assis_response(msg):
-    ints = predict_class(msg, model)
-    getResponse(ints, intents)
+def assis_response(msg,profile):
+    filename="Model/"+profile+"_intents.json"
+    intents = json.loads(open(filename).read())
+    ints = predict_class(msg,model)
+    getResponse(ints, intents,profile)
 
 
 def chatting():

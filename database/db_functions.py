@@ -43,7 +43,7 @@ def checkPassword(username, password_hash):
 
 
 # c.execute('''
-#         DELETE FROM users
+#         DELETE FROM users WHERE username IN ('isha','priya','prachi')
 #         ''')
 # conn.commit()
 
