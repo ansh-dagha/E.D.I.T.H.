@@ -97,6 +97,8 @@ def training_model(intent_path):
 
     #fitting and saving the model
 
-    hist = model.fit(np.array(train_x), np.array(train_y), epochs=40, batch_size=5, verbose=0)
+    hist = model.fit(np.array(train_x), np.array(train_y), epochs=50, batch_size=5, verbose=0)
     model.save('Model/chatbot_model.h5', hist)
     print("Model Trained")
+
+# training_model('Model\gayatri_intents.json')

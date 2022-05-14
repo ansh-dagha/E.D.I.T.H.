@@ -421,23 +421,21 @@
             ]
         },
         {
-            "tag": "my favourite colour",
+            "tag": "favourite play",
             "patterns": [
-                "my favourite colour",
-                "my favourite colour"
+                "favourite play"
             ],
             "responses": [
-                "favourite colour is pink",
-                "favourite colour is pink"
+                "football"
             ]
         },
         {
-            "tag": "my favourite food is",
+            "tag": "my favourite food",
             "patterns": [
-                "my favourite food is"
+                "my favourite food"
             ],
             "responses": [
-                "you like pizza"
+                "pizza"
             ]
         }
     ]

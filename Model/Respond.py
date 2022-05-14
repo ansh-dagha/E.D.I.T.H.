@@ -18,10 +18,9 @@ from utilities.songs import *
 import settings as settings
 from Model.train import training_model
 from keras.models import load_model
-model = load_model('Model/chatbot_model.h5')
 import json
 import random
-
+model = load_model('Model/chatbot_model.h5')
 words = pickle.load(open('Model/words.pkl','rb'))
 classes = pickle.load(open('Model/classes.pkl','rb'))
 history = False
@@ -32,6 +31,7 @@ def date():
     speak(f"It\'s {strTime} right now")
 
 def learn(profile,intents):
+    # global model,words,classes
     print('Help me Learn?')
     speak('What should I remember?')
     ms = listen()
@@ -57,6 +57,9 @@ def learn(profile,intents):
         outfile.write(json.dumps(intents,indent=4))
     
     training_model(filename)
+    # model = load_model('Model/chatbot_model.h5')
+    # words = pickle.load(open('Model/words.pkl','rb'))
+    # classes = pickle.load(open('Model/classes.pkl','rb'))
 
 
 act_dict={'datetime':date,
@@ -89,7 +92,7 @@ def bow(sentence, words, show_details=True):
                     print ("found in bag: %s" % w)
     return(np.array(bag))
 
-def predict_class(sentence, model):
+def predict_class(sentence,model):
     # filter out predictions below a threshold
     p = bow(sentence, words,show_details=False)
     res = model.predict(np.array([p]))[0]
@@ -127,7 +130,7 @@ def getResponse(return_list, intents_json,profile):
 def assis_response(msg,profile):
     filename="Model/"+profile+"_intents.json"
     intents = json.loads(open(filename).read())
-    ints = predict_class(msg, model)
+    ints = predict_class(msg,model)
     getResponse(ints, intents,profile)
 
 
