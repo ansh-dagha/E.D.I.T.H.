@@ -1,4 +1,5 @@
 import os, sys
+from unittest import TestResult
 from PyQt5.uic import loadUi
 from PyQt5 import QtCore
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QAction
@@ -18,9 +19,6 @@ class LoginScreen(QDialog):
         loadUi(login_ui_path, self)
 
         self.setWindowFlag(QtCore.Qt.WindowMinimizeButtonHint, True)
-
-        self.username = ''
-        self.signupflag = False
 
         self.loginButton.clicked.connect(self.loginfunction)
         self.forgotPasswordButton.clicked.connect(self.forgotPassword)
@@ -50,9 +48,8 @@ class LoginScreen(QDialog):
             password_hash = hashlib.sha3_512(password.encode()).hexdigest()
             
             if checkPassword(username, password_hash):
-                settings.init(username)
-                self.username = username
-                self.signupflag = False
+                settings.setUsername(username)
+                settings.signUpFlag = False
                 self.close()
                 
             else:
@@ -64,14 +61,15 @@ class LoginScreen(QDialog):
 
     def signupfunction(self):
         self.close()
-        self.signupflag = True
+        settings.signUpFlag = True
+        settings.exitFlag = False
     
-    def output(self):
-        return self.username, self.signupflag
+    # def output(self):
+    #     return self.signupflag
 
     def closeEvent(self, event):
-        self.signupflag = False
-        self.username = '_'
+        settings.signUpflag = False
+        settings.exitFlag = True
 
 
 # if __name__ == '__main__':

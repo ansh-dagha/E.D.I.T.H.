@@ -9,6 +9,7 @@ sys.path.append(os.path.join(os.path.dirname(sys.path[0]),''))
 from database.db_functions import *
 import hashlib
 import re
+import settings
 from utilities.modelfile import create_intents
 
 app = QApplication(sys.argv)
@@ -29,8 +30,6 @@ class SignupScreen(QDialog):
 
         self.setWindowFlag(QtCore.Qt.WindowMinimizeButtonHint, True)
         # self.setWindowFlag(QtCore.Qt.WindowMaximizeButtonHint, True)
-
-        self.username = ''
 
         self.signupButton.clicked.connect(self.signupfunction)
         self.loginButton.clicked.connect(self.loginfunction)
@@ -67,7 +66,10 @@ class SignupScreen(QDialog):
             self.inputConfirmPassword.clear()
 
         else:
-            self.username = username
+            settings.setUsername(username)
+            settings.exitFlag = True
+            settings.signUpFlag = False
+
             create_intents(username)
             password_hash = hashlib.sha3_512(password.encode()).hexdigest()
             addDetails(username, email, password_hash)
@@ -77,10 +79,12 @@ class SignupScreen(QDialog):
             
     def loginfunction(self):
         self.close()
-        self.username = ''
+        settings.signUpFlag = False
+        settings.exitFlag = False
     
-    def output(self):
-        return self.username
+    # def output(self):
+    #     return self.username
 
     def closeEvent(self, event):
-        self.username = '_'
+        settings.signUpFlag = False
+        settings.exitFlag = True
