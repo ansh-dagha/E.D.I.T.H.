@@ -1,9 +1,8 @@
 import sys
 from PyQt5.QtWidgets import QApplication
-from UI import login, signup
+from UI import login, signup, ui_home
 import settings
 
-# app = QApplication(sys.argv)
 login_ = login.LoginScreen()
 signup_ = signup.SignupScreen()
 
@@ -15,5 +14,12 @@ while (settings.username == '') and (settings.exitFlag == False):
 
 if settings.username == '':
     sys.exit()
-    
+
 print("SUCCESS! Welcome ",settings.username)
+
+# username = 'anshdagha'
+
+app = QApplication(sys.argv)
+home_ = ui_home.MainWindow()
+home_.show()
+sys.exit(app.exec_())

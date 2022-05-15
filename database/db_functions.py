@@ -2,6 +2,7 @@ import sqlite3
 import sys
 import os
 
+# db_path = os.path.join(os.path.dirname(sys.path[0]),'database\\assistant.db')
 db_path = os.path.join(os.path.dirname(sys.path[0]),'AI-Assistant\\database\\assistant.db')
 conn = sqlite3.connect(db_path)
 
@@ -39,6 +40,25 @@ def checkPassword(username, password_hash):
         return True
     else:
         return False
+
+def getUserDetails(username):
+    c.execute("SELECT * FROM users where username=?", (username,))
+    fields = c.fetchone()
+    # response = {
+    #     'username' : fields[0],
+    #     'email' : fields[1],
+    #     'voice' : fields[3],
+    #     'addressee' : fields[4]
+    # }
+    return (fields[1], fields[3], fields[4])
+
+def updateEmail(email, username):
+    c.execute(''' UPDATE users SET email=? WHERE username=?''', (email, username,))
+    conn.commit()
+
+def updatePassword(password_hash, username):
+    c.execute(''' UPDATE users SET password=? WHERE username=?''', (password_hash, username,))
+    conn.commit()
 
 # c.execute('''
 #         DELETE FROM users WHERE username IN ('isha','priya','prachi')
