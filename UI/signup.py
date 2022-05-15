@@ -1,15 +1,11 @@
-import imp
-import sys
-import os
+import os, sys
 from PyQt5.uic import loadUi
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtCore
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QAction
-from PyQt5.QtGui import QPixmap
 import UI.image_rc
 import UI.userdetails as usr
 
-settings_dir = sys.path.append(os.path.join(os.path.dirname(sys.path[0]),''))
-settings_dir = sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'database'))
+sys.path.append(os.path.join(os.path.dirname(sys.path[0]),''))
 from database.db_functions import *
 import hashlib
 import re
@@ -88,12 +84,3 @@ class SignupScreen(QDialog):
 
     def closeEvent(self, event):
         self.username = '_'
-
-# if __name__ == '__main__':
-#     os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
-#     # os.environ["QT_SCALE_FACTOR"] = "1"
-#     app = QApplication(sys.argv)
-
-#     signupForm = SignupScreen()
-#     signupForm.show()
-#     sys.exit(app.exec_())

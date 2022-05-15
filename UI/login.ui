@@ -180,11 +180,11 @@ padding-left: 50px;
 }
 
 QLineEdit:focus{
-border: 2px solid rgb(170, 0, 255);
+border: 2px solid rgb(220, 158, 204);
 }
 
 QLineEdit:hover{
-border: 2px solid rgb(170, 0, 255);
+border: 2px solid rgb(220, 158, 204);
 }</string>
    </property>
    <property name="inputMethodHints">
@@ -341,11 +341,11 @@ padding-left: 50px;
 }
 
 QLineEdit:focus{
-border: 2px solid rgb(170, 0, 255);
+border: 2px solid rgb(220, 158, 204);
 }
 
 QLineEdit:hover{
-border: 2px solid rgb(170, 0, 255);
+border: 2px solid rgb(220, 158, 204);
 }</string>
    </property>
    <property name="text">

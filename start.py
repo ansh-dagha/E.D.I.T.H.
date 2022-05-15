@@ -17,5 +17,3 @@ while not username:
     if signupflag:
         if not signup_.exec():
             username = signup_.output()
-
-print(username)

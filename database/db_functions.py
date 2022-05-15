@@ -3,7 +3,6 @@ import sys
 import os
 
 db_path = os.path.join(os.path.dirname(sys.path[0]),'AI-Assistant\\database\\assistant.db')
-print(db_path)
 conn = sqlite3.connect(db_path)
 
 c = conn.cursor()
@@ -40,7 +39,6 @@ def checkPassword(username, password_hash):
         return True
     else:
         return False
-
 
 # c.execute('''
 #         DELETE FROM users WHERE username IN ('isha','priya','prachi')

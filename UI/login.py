@@ -1,16 +1,12 @@
-import sys
-import os
+import os, sys
 from PyQt5.uic import loadUi
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtCore
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QAction
-from PyQt5.QtGui import QPixmap
 import UI.image_rc
 
-settings_dir = sys.path.append(os.path.join(os.path.dirname(sys.path[0]),''))
-settings_dir = sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'database'))
+sys.path.append(os.path.join(os.path.dirname(sys.path[0]),''))
 from database.db_functions import *
 import hashlib
-import re
 import settings
 
 app = QApplication(sys.argv)
@@ -55,8 +51,6 @@ class LoginScreen(QDialog):
             
             if checkPassword(username, password_hash):
                 settings.init(username)
-                print(settings.profile)
-                print("Successfully logged In.")
                 self.username = username
                 self.signupflag = False
                 self.close()
@@ -79,14 +73,9 @@ class LoginScreen(QDialog):
         self.signupflag = False
         self.username = '_'
 
-    # def start():
-    #     app = QApplication(sys.argv)
-    #     login_ = login.LoginScreen()
-    #     login_.show()
-    #     sys.exit(app.exec_())
-
 
 # if __name__ == '__main__':
-#     loginForm = LoginScreen()
-#     loginForm.show()
+#     app = QApplication(sys.argv)
+#     login_ = login.LoginScreen()
+#     login_.show()
 #     sys.exit(app.exec_())
