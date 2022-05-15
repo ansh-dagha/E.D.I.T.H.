@@ -48,10 +48,10 @@ class LoginScreen(QDialog):
             password_hash = hashlib.sha3_512(password.encode()).hexdigest()
             
             if checkPassword(username, password_hash):
-                settings.setUsername(username)
-                settings.signUpFlag = False
+                settings.username = username
                 self.close()
-                
+                settings.exitFlag = False
+
             else:
                 self.errorLabel.setText('Incorrect password! Please try again.')
                 self.inputPassword.clear()

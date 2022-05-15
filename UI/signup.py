@@ -66,17 +66,16 @@ class SignupScreen(QDialog):
             self.inputConfirmPassword.clear()
 
         else:
-            settings.setUsername(username)
-            settings.exitFlag = True
-            settings.signUpFlag = False
-
+            settings.username = username
             create_intents(username)
             password_hash = hashlib.sha3_512(password.encode()).hexdigest()
             addDetails(username, email, password_hash)
             self.details = usr.UserDetails(username=username)
             self.close()
+            settings.signUpFlag = False
+            settings.exitFlag = False
             self.details.exec_()
-            
+
     def loginfunction(self):
         self.close()
         settings.signUpFlag = False

@@ -37,6 +37,7 @@ class MainWindow(QMainWindow):
         self.profileButton.clicked.connect(self.toggleOptions)
         self.cancelButton.clicked.connect(self.cancel)
         self.settingsButton.clicked.connect(self.openSettings)
+        self.logoutButton.clicked.connect(self.logOut)
 
         self.setValues()
         self.saveButton.clicked.connect(self.saveAccountSettings)
@@ -105,6 +106,14 @@ class MainWindow(QMainWindow):
 
     def cancel(self):
         self.tabWidget.close()
+
+    def logOut(self,event):
+        self.close()
+        settings.exitFlag = False
+
+    def closeEvent(self,event):
+        settings.stopNotifications = True
+        settings.exitFlag = True
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

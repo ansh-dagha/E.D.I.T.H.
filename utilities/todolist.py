@@ -1,10 +1,13 @@
 import os, sys, json, re
 from datetime import datetime as dt
-from utilities.get_date_time import *
-from utilities.speech_functions import * 
+from get_date_time import *
+# from utilities.get_date_time import *
+from speech_functions import * 
+# from utilities.speech_functions import * 
 
 
-users_dir = os.path.join(os.path.dirname(sys.path[0]),'todolists')
+# users_dir = os.path.join(os.path.dirname(sys.path[0]),'todolists')
+users_dir = os.path.join(os.path.dirname(sys.path[0]),'AI-Assistant\\todolists')
 os.makedirs(users_dir, exist_ok=True)
 
 
@@ -43,6 +46,7 @@ def add_to_list(username, task, due_date, reminder_date, time):
         task, due_date, dueSortKey, reminder = preprocess(task, due_date, reminder_date, time)
 
         tasks = []
+        os.makedirs(f"{users_dir}\\{username}", exist_ok=True)
         open(f"{users_dir}\\{username}\\{username}.json", 'a').close()
 
         with open(f"{users_dir}\\{username}\\{username}.json") as fileobj:
@@ -76,6 +80,9 @@ def remove_from_list(username, task_no):
     try:
         tasks = []
 
+        os.makedirs(f"{users_dir}\\{username}", exist_ok=True)
+        open(f"{users_dir}\\{username}\\{username}.json", 'a').close()
+
         with open(f"{users_dir}\\{username}\\{username}.json") as fileobj:
             try:
                 tasks = json.load(fileobj)
@@ -103,6 +110,9 @@ def to_do_list_open(username):
     output = "No pending tasks"
 
     try:
+        os.makedirs(f"{users_dir}\\{username}", exist_ok=True)
+        open(f"{users_dir}\\{username}\\{username}.json", 'a').close()
+
         with open(f"{users_dir}\\{username}\\{username}.json") as fileobj:
             tasks = json.load(fileobj)
             if len(tasks) == 0:
@@ -159,7 +169,7 @@ def to_do_list_remove_task(username):
 # add_to_list('Mihir', 'complete mini project', '2nd may 2022', '23rd april', ' 11 1 p.m.')
 # add_to_list('Mihir', 'watch movie', 'No due date', 'dont remind', 'dont remind')
 
-to_do_list_add_task(username = 'Mihir')
+# to_do_list_add_task(username = 'Mihir')
 # to_do_list_remove_task(username ='Mihir')
 # to_do_list_open(username ='Mihir')
 
