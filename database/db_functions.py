@@ -13,7 +13,8 @@ c.execute('''
     [email] NVARCHAR(255),
     [password] TEXT,
     [voice] INTEGER DEFAULT 0,
-    [addressee] TEXT DEFAULT 'Boss')
+    [addressee] TEXT DEFAULT 'Boss',
+    [theme] INTEGER DEFAULT 0)
     ''')
 
 def userExists(username):
@@ -48,9 +49,10 @@ def getUserDetails(username):
     #     'username' : fields[0],
     #     'email' : fields[1],
     #     'voice' : fields[3],
-    #     'addressee' : fields[4]
+    #     'addressee' : fields[4],
+    #     'theme' : fields[5]
     # }
-    return (fields[1], fields[3], fields[4])
+    return (fields[1], fields[3], fields[4], fields[5])
 
 def updateEmail(email, username):
     c.execute(''' UPDATE users SET email=? WHERE username=?''', (email, username,))
@@ -58,6 +60,10 @@ def updateEmail(email, username):
 
 def updatePassword(password_hash, username):
     c.execute(''' UPDATE users SET password=? WHERE username=?''', (password_hash, username,))
+    conn.commit()
+
+def updateTheme(theme, username):
+    c.execute(''' UPDATE users SET theme=? WHERE username=?''', (theme, username,))
     conn.commit()
 
 # c.execute('''

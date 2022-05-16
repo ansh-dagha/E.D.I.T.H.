@@ -14,7 +14,12 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255)</string>
+   <string notr="true">MainWindow {
+        
+	background-image: url(:/themes/1.png);
+}
+
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="profileButton">
@@ -1033,6 +1038,111 @@ selection-background-color: #0d9ad6;
      <attribute name="title">
       <string>Change theme</string>
      </attribute>
+     <widget class="QPushButton" name="saveThemeButton">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>520</y>
+        <width>400</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>MS Sans Serif</family>
+        <pointsize>11</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: #0d9ad6; color: white; border-radius: 8;</string>
+      </property>
+      <property name="text">
+       <string>Save</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButtonT0">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>90</y>
+        <width>250</width>
+        <height>180</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="theme.qrc">
+        <normaloff>:/themes/0.png</normaloff>:/themes/0.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>200</width>
+        <height>200</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButtonT1">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>90</y>
+        <width>250</width>
+        <height>180</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="theme.qrc">
+        <normaloff>:/themes/1.png</normaloff>:/themes/1.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>200</width>
+        <height>200</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButtonT2">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>90</y>
+        <width>250</width>
+        <height>180</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="theme.qrc">
+        <normaloff>:/themes/2.png</normaloff>:/themes/2.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>200</width>
+        <height>200</height>
+       </size>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QWidget" name="optionsWidget" native="true">
@@ -1125,6 +1235,23 @@ padding: 10px;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QLabel" name="background">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1200</width>
+      <height>840</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>background</zorder>
    <zorder>micLabel</zorder>
    <zorder>label</zorder>
    <zorder>profileButton</zorder>
@@ -1149,6 +1276,7 @@ padding: 10px;</string>
  </widget>
  <resources>
   <include location="image.qrc"/>
+  <include location="theme.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -8,6 +8,7 @@ from PyQt5.QtGui import *
 sys.path.append(os.path.join(os.path.dirname(sys.path[0]),''))
 from database.db_functions import *
 import UI.image_rc
+import UI.theme_rc
 import settings
 import hashlib
 import shutil # pip install pytest-shutil
@@ -28,6 +29,7 @@ class MainWindow(QMainWindow):
         loadUi(home_ui_path, self)
 
         self.username = settings.username
+        self.email, self.voice, self.addressee, self.theme = getUserDetails(self.username)
 
         self.optionsWidget.hide()
         self.tabWidget.hide()
@@ -39,10 +41,12 @@ class MainWindow(QMainWindow):
 
         self.setValues()
         self.setImages()
+        self.setTheme()
         
         self.saveAccountButton.clicked.connect(self.saveAccountSettings)
         self.playButton.clicked.connect(self.playfunction)
         self.savePreferenceButton.clicked.connect(self.savePreferenceSettings)
+        self.saveThemeButton.clicked.connect(self.changeTheme)
 
         self.editProfilePhotoButton.clicked.connect(self.editProfilePhoto)
         self.editEmailButton.clicked.connect(self.editEmail)
@@ -55,7 +59,6 @@ class MainWindow(QMainWindow):
         self.micLabel.setMovie(self.movie)
         self.startAnimation()
 
-
     def startAnimation(self):
         self.movie.start()
 
@@ -64,7 +67,6 @@ class MainWindow(QMainWindow):
 
     def setValues(self):
         self.inputUsername.setText(self.username)
-        self.email, self.voice, self.addressee = getUserDetails(self.username)
         self.inputEmail.setText(self.email)
         
         if self.voice == 0:
@@ -73,6 +75,30 @@ class MainWindow(QMainWindow):
             self.radioButtonF.setChecked(True)
 
         self.comboBox.setCurrentText(self.addressee)
+
+    def setTheme(self):
+        if self.theme == 0:
+            self.radioButtonT0.setChecked(True)
+        elif self.theme == 1:
+            self.radioButtonT1.setChecked(True)
+        else:
+            self.radioButtonT2.setChecked(True)
+        
+        self.background.setStyleSheet("border-image: url(:/themes/" + str(self.theme) + ".png) 0 0 0 0 stretch stretch;")
+
+    def changeTheme(self):
+        if self.radioButtonT0.isChecked():
+            newTheme = 0
+        elif self.radioButtonT1.isChecked():
+            newTheme = 1
+        else:
+            newTheme = 2
+
+        self.theme = newTheme
+        updateTheme(newTheme, self.username)
+        self.background.setStyleSheet("border-image: url(:/themes/" + str(self.theme) + ".png) 0 0 0 0 stretch stretch;")
+        self.tabWidget.hide()
+
 
     def setImages(self):
         try:
@@ -122,7 +148,6 @@ class MainWindow(QMainWindow):
         self.emailFlag = False
         self.passwordFlag = False
 
-        self.optionsWidget.hide()
         self.tabWidget.hide()
 
     def playfunction(self, voice = 0):
@@ -148,7 +173,8 @@ class MainWindow(QMainWindow):
 
     def openSettings(self):
         self.tabWidget.show()
-
+        self.optionsWidget.hide()
+        
     def cancel(self):
         self.tabWidget.close()
 
