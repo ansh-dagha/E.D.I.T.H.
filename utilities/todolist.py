@@ -6,9 +6,9 @@ from speech_functions import *
 # from utilities.speech_functions import * 
 
 
-# users_dir = os.path.join(os.path.dirname(sys.path[0]),'todolists')
-users_dir = os.path.join(os.path.dirname(sys.path[0]),'AI-Assistant\\todolists')
-os.makedirs(users_dir, exist_ok=True)
+# todolist_dir = os.path.join(os.path.dirname(sys.path[0]),'todolists')
+todolist_dir = os.path.join(os.path.dirname(sys.path[0]),'AI-Assistant\\todolists')
+os.makedirs(todolist_dir, exist_ok=True)
 
 
 def preprocess(task, due_date, reminder_date, time):
@@ -46,10 +46,10 @@ def add_to_list(username, task, due_date, reminder_date, time):
         task, due_date, dueSortKey, reminder = preprocess(task, due_date, reminder_date, time)
 
         tasks = []
-        os.makedirs(f"{users_dir}\\{username}", exist_ok=True)
-        open(f"{users_dir}\\{username}\\{username}.json", 'a').close()
+        os.makedirs(f"{todolist_dir}\\{username}", exist_ok=True)
+        open(f"{todolist_dir}\\{username}.json", 'a').close()
 
-        with open(f"{users_dir}\\{username}\\{username}.json") as fileobj:
+        with open(f"{todolist_dir}\\{username}.json") as fileobj:
             try:
                 tasks = json.load(fileobj)
             except Exception as e:
@@ -66,7 +66,7 @@ def add_to_list(username, task, due_date, reminder_date, time):
 
             tasks.sort(key = lambda d: d['reminder'])
 
-        with open(f"{users_dir}\\{username}\\{username}.json",'w') as fileobj:
+        with open(f"{todolist_dir}\\{username}.json",'w') as fileobj:
             fileobj.write(json.dumps(tasks))
 
         speak('Task added to your list')
@@ -80,10 +80,10 @@ def remove_from_list(username, task_no):
     try:
         tasks = []
 
-        os.makedirs(f"{users_dir}\\{username}", exist_ok=True)
-        open(f"{users_dir}\\{username}\\{username}.json", 'a').close()
+        os.makedirs(f"{todolist_dir}\\{username}", exist_ok=True)
+        open(f"{todolist_dir}\\{username}.json", 'a').close()
 
-        with open(f"{users_dir}\\{username}\\{username}.json") as fileobj:
+        with open(f"{todolist_dir}\\{username}.json") as fileobj:
             try:
                 tasks = json.load(fileobj)
             except Exception as e:
@@ -97,7 +97,7 @@ def remove_from_list(username, task_no):
         
         tasks.pop(task_no-1)
         
-        with open(f"{users_dir}\\{username}\\{username}.json",'w') as fileobj:
+        with open(f"{todolist_dir}\\{username}.json",'w') as fileobj:
             fileobj.write(json.dumps(tasks))
         
         speak('Task removed from your list')
@@ -110,10 +110,10 @@ def to_do_list_open(username):
     output = "No pending tasks"
 
     try:
-        os.makedirs(f"{users_dir}\\{username}", exist_ok=True)
-        open(f"{users_dir}\\{username}\\{username}.json", 'a').close()
+        os.makedirs(f"{todolist_dir}\\{username}", exist_ok=True)
+        open(f"{todolist_dir}\\{username}.json", 'a').close()
 
-        with open(f"{users_dir}\\{username}\\{username}.json") as fileobj:
+        with open(f"{todolist_dir}\\{username}.json") as fileobj:
             tasks = json.load(fileobj)
             if len(tasks) == 0:
                 print(output)
@@ -126,10 +126,10 @@ def to_do_list_open(username):
                 else:
                     output += f"Task : "+ taskObj['task'] + " is not due" + "\n"
     
-        with open(f"{users_dir}\\tasks.txt",'w') as fileobj:
+        with open(f"{todolist_dir}\\tasks.txt",'w') as fileobj:
             fileobj.write(output)
 
-        os.startfile(f"{users_dir}\\tasks.txt")
+        os.startfile(f"{todolist_dir}\\tasks.txt")
         speak(output)
 
     except Exception as e:

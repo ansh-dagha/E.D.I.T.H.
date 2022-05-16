@@ -9,6 +9,7 @@ sys.path.append(os.path.join(os.path.dirname(sys.path[0]),''))
 from database.db_functions import *
 import hashlib
 import re
+import shutil
 import settings
 from utilities.modelfile import create_intents
 
@@ -67,7 +68,7 @@ class SignupScreen(QDialog):
 
         else:
             settings.username = username
-            create_intents(username)
+            create_intents(settings.username)
             password_hash = hashlib.sha3_512(password.encode()).hexdigest()
             addDetails(username, email, password_hash)
             self.details = usr.UserDetails(username=username)
@@ -75,14 +76,33 @@ class SignupScreen(QDialog):
             settings.signUpFlag = False
             settings.exitFlag = False
             self.details.exec_()
+            self.createDefaultProfilePic()
 
     def loginfunction(self):
         self.close()
         settings.signUpFlag = False
         settings.exitFlag = False
     
-    # def output(self):
-    #     return self.username
+    def createDefaultProfilePic(self):
+        try:
+            src = str(os.path.join(os.path.dirname(sys.path[0]),f'AI-Assistant\\ui\\images\\defaultProfilePic.png'))
+            dst = str(os.path.join(os.path.dirname(sys.path[0]),f'AI-Assistant\\ui\\images\\{settings.username}.png'))
+            shutil.copy2(src, dst)
+            img_qrc_path = str(os.path.join(os.path.dirname(sys.path[0]),'AI-Assistant\\ui\\image.qrc'))
+            with open(img_qrc_path, 'r+') as f:
+                lines = f.read().split('\n')
+                string = f"\t<file>images/{settings.username}.png</file>"
+                lines.insert(-2, string)
+                data = "\n".join(lines)
+                f.seek(0)
+                f.write(data)
+            img_rc_py_path = str(os.path.join(os.path.dirname(sys.path[0]),'AI-Assistant\\ui\\image_rc.py'))
+            ui_dir = str(os.path.join(os.path.dirname(sys.path[0]),'AI-Assistant\\ui'))
+            os.system(f"cd {ui_dir} && python -m PyQt5.pyrcc_main {img_qrc_path} -o {img_rc_py_path}")
+
+        except Exception as e:
+            print(e)
+
 
     def closeEvent(self, event):
         settings.signUpFlag = False

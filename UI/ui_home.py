@@ -10,7 +10,7 @@ from database.db_functions import *
 import UI.image_rc
 import settings
 import hashlib
-
+import shutil # pip install pytest-shutil
 import pyttsx3
 
 engine = pyttsx3.init('sapi5')
@@ -28,8 +28,6 @@ class MainWindow(QMainWindow):
         loadUi(home_ui_path, self)
 
         self.username = settings.username
-        self.profileButton.setStyleSheet("border-radius: 40px; \
-            border-image: url(:/images/" + self.username + ".png) 0 0 0 0 stretch stretch;")
 
         self.optionsWidget.hide()
         self.tabWidget.hide()
@@ -40,10 +38,13 @@ class MainWindow(QMainWindow):
         self.logoutButton.clicked.connect(self.logOut)
 
         self.setValues()
+        self.setImages()
+        
         self.saveButton.clicked.connect(self.saveAccountSettings)
         self.playButton.clicked.connect(self.playfunction)
         self.savePreferenceButton.clicked.connect(self.savePreferenceSettings)
 
+        self.editProfilePhotoButton.clicked.connect(self.editProfilePhoto)
         self.editEmailButton.clicked.connect(self.editEmail)
         self.editPasswordButton.clicked.connect(self.editPassword)
 
@@ -61,7 +62,34 @@ class MainWindow(QMainWindow):
             self.radioButtonF.setChecked(True)
 
         self.comboBox.setCurrentText(self.addressee)
-    
+
+    def setImages(self):
+        try:
+            self.profileButton.setStyleSheet("border-radius: 40px; \
+                border-image: url(:/images/" + self.username + ".png) 0 0 0 0 stretch stretch;")
+            self.editProfilePhotoButton.setStyleSheet("border-radius: 40px; \
+                border-image: url(:/images/" + self.username + ".png) 0 0 0 0 stretch stretch;")
+        except Exception as e:
+            print(e)
+            pass
+
+    def editProfilePhoto(self):
+        try:
+            file_filter = 'Image File (*.jpg; *.jpeg; *.gif; *.bmp)'
+            response = QFileDialog.getOpenFileName(
+                parent=self,
+                caption='Select an Image',
+                directory=os.getcwd(),
+                filter=file_filter,
+                initialFilter=file_filter,
+            )
+            src = response[0]
+            dst = str(os.path.join(os.path.dirname(sys.path[0]),f'AI-Assistant\\ui\\images\\{self.username}.png'))
+            shutil.copy2(src, dst)
+            self.setImages()
+        except Exception as e:
+            print(e)
+
     def editEmail(self):
         self.inputEmail.setEnabled(True)
         self.emailFlag = True

@@ -3,22 +3,22 @@ from win10toast import ToastNotifier
 import settings
 # pip install win10toast
 
-# users_dir = os.path.join(os.path.dirname(sys.path[0]),'todolists')
-users_dir = os.path.join(os.path.dirname(sys.path[0]),'AI-Assistant\\todolists')
+# todolist_dir = os.path.join(os.path.dirname(sys.path[0]),'todolists')
+todolist_dir = os.path.join(os.path.dirname(sys.path[0]),'AI-Assistant\\todolists')
 # icon_dir = os.path.join(os.path.dirname(sys.path[0]),'ui\\images\\notification.ico')
 icon_dir = os.path.join(os.path.dirname(sys.path[0]),'AI-Assistant\\ui\\images\\notification.ico')
-os.makedirs(users_dir, exist_ok=True)
+os.makedirs(todolist_dir, exist_ok=True)
 
 n = ToastNotifier()
 
 def start_service(username):
 
-    os.makedirs(f"{users_dir}\\{username}", exist_ok=True)
-    open(f"{users_dir}\\{username}\\{username}.json", "a").close()
+    os.makedirs(f"{todolist_dir}", exist_ok=True)
+    open(f"{todolist_dir}\\{username}.json", "a").close()
 
     while settings.stopNotifications == False:
 
-        with open(f"{users_dir}\\{username}\\{username}.json") as fileobj:
+        with open(f"{todolist_dir}\\{username}.json") as fileobj:
             try:
                 tasks = json.load(fileobj)
             except Exception as e:
@@ -34,7 +34,7 @@ def start_service(username):
                 n.show_toast(taskObj['task'], 'Due on: '+ taskObj['due_date'], duration=7, icon_path = icon_dir)
                 print('notified')
                 tasks.pop(0)
-                with open(f"{users_dir}\\{username}\\{username}.json",'w') as fileObj:
+                with open(f"{todolist_dir}\\{username}.json",'w') as fileObj:
                     fileObj.write(json.dumps(tasks))
             else:
                 # sleep

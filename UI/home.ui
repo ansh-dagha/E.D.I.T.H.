@@ -40,7 +40,7 @@
     <property name="styleSheet">
      <string notr="true">QPushButton{
 border-radius: 40px;
-border-image: url(:/images/anshdagha.png) 0 0 0 0 stretch stretch; 
+border-image: url(:/images/defaultProfilePic.png) 0 0 0 0 stretch stretch; 
 }
 
 </string>
@@ -109,7 +109,7 @@ border-radius: 40px;</string>
      <attribute name="title">
       <string>Account Settings</string>
      </attribute>
-     <widget class="QPushButton" name="editProfilePhoto">
+     <widget class="QPushButton" name="editProfilePhotoButton">
       <property name="geometry">
        <rect>
         <x>525</x>
@@ -130,9 +130,9 @@ border-radius: 40px;</string>
        <cursorShape>PointingHandCursor</cursorShape>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton{
+      <string notr="true">QPushButton{
 border-radius: 75px;
-border-image: url(:/images/anshdagha.png) 0 0 0 0 stretch stretch; 
+border-image: url(:/images/defaultProfilePic.png) 0 0 0 0 stretch stretch; 
 }
 
 </string>
@@ -632,7 +632,7 @@ background-color: #00000000
       </property>
      </widget>
      <zorder>photoBorder</zorder>
-     <zorder>editProfilePhoto</zorder>
+     <zorder>editProfilePhotoButton</zorder>
      <zorder>inputUsername</zorder>
      <zorder>user_icon</zorder>
      <zorder>inputEmail</zorder>

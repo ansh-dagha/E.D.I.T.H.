@@ -1,0 +1,16 @@
+<RCC>
+  <qresource>
+    <file>images/email-icon2.jpg</file>
+    <file>images/password-icon2.png</file>
+    <file>images/pencil-icon.png</file>
+    <file>images/anshdagha.png</file>
+    <file>images/speaker-icon.png</file>
+    <file>images/login-background.png</file>
+    <file>images/signup-background.png</file>
+    <file>images/repassword-icon.png</file>
+    <file>images/password-icon.png</file>
+    <file>images/email-icon.jpg</file>
+    <file>images/user-icon.png</file>
+    <file>images/defaultProfilePic.png</file>
+  </qresource>
+</RCC>
