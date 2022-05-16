@@ -31,6 +31,7 @@ while settings.exitFlag == False:
 
     home_ = ui_home.MainWindow()
     home_.show()
+    
     print("Starting notification service")
     notification_thread = threading.Thread(target=notify.start_service, args=(settings.username,))
     notification_thread.start()

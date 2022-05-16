@@ -40,7 +40,7 @@ class MainWindow(QMainWindow):
         self.setValues()
         self.setImages()
         
-        self.saveButton.clicked.connect(self.saveAccountSettings)
+        self.saveAccountButton.clicked.connect(self.saveAccountSettings)
         self.playButton.clicked.connect(self.playfunction)
         self.savePreferenceButton.clicked.connect(self.savePreferenceSettings)
 
@@ -50,6 +50,17 @@ class MainWindow(QMainWindow):
 
         self.emailFlag = False
         self.passwordFlag = False
+
+        self.movie = QMovie("UI/gifs/mic.gif")
+        self.micLabel.setMovie(self.movie)
+        self.startAnimation()
+
+
+    def startAnimation(self):
+        self.movie.start()
+
+    def stopAnimation(self):
+        self.movie.stop()
 
     def setValues(self):
         self.inputUsername.setText(self.username)
@@ -111,6 +122,9 @@ class MainWindow(QMainWindow):
         self.emailFlag = False
         self.passwordFlag = False
 
+        self.optionsWidget.hide()
+        self.tabWidget.hide()
+
     def playfunction(self, voice = 0):
         if self.radioButtonF.isChecked():
             voice = 1
@@ -122,6 +136,9 @@ class MainWindow(QMainWindow):
         addressee = self.comboBox.currentText()
         updatePreference(voice, addressee, self.username)
         print('Successful')
+
+        self.optionsWidget.hide()
+        self.tabWidget.hide()
 
     def toggleOptions(self):
         if self.optionsWidget.isVisible():

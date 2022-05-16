@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(0, 0, 0)</string>
+   <string notr="true">background-color: rgb(255, 255, 255)</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="profileButton">
@@ -88,7 +88,7 @@ border-radius: 40px;</string>
      <enum>QTabWidget::North</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="elideMode">
      <enum>Qt::ElideNone</enum>
@@ -130,7 +130,7 @@ border-radius: 40px;</string>
        <cursorShape>PointingHandCursor</cursorShape>
       </property>
       <property name="styleSheet">
-      <string notr="true">QPushButton{
+       <string notr="true">QPushButton{
 border-radius: 75px;
 border-image: url(:/images/defaultProfilePic.png) 0 0 0 0 stretch stretch; 
 }
@@ -604,7 +604,7 @@ background-color: #00000000
        <string>Cancel</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="saveButton">
+     <widget class="QPushButton" name="saveAccountButton">
       <property name="geometry">
        <rect>
         <x>430</x>
@@ -646,7 +646,7 @@ background-color: #00000000
      <zorder>emailLabel</zorder>
      <zorder>passwordLabel</zorder>
      <zorder>cancelButton</zorder>
-     <zorder>saveButton</zorder>
+     <zorder>saveAccountButton</zorder>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -1041,7 +1041,7 @@ selection-background-color: #0d9ad6;
       <x>1010</x>
       <y>150</y>
       <width>150</width>
-      <height>85</height>
+      <height>90</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1053,7 +1053,7 @@ selection-background-color: #0d9ad6;
        <x>0</x>
        <y>45</y>
        <width>150</width>
-       <height>40</height>
+       <height>45</height>
       </rect>
      </property>
      <property name="font">
@@ -1070,7 +1070,6 @@ selection-background-color: #0d9ad6;
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);
 color: rgb(48, 48, 48);
-border-radius: 1;
 padding: 10px;</string>
      </property>
      <property name="text">
@@ -1083,7 +1082,7 @@ padding: 10px;</string>
        <x>0</x>
        <y>0</y>
        <width>150</width>
-       <height>40</height>
+       <height>45</height>
       </rect>
      </property>
      <property name="font">
@@ -1100,7 +1099,6 @@ padding: 10px;</string>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(255, 255, 255);
 color: rgb(48, 48, 48);
-border-radius: 1;
 padding: 10px;</string>
      </property>
      <property name="text">
@@ -1108,6 +1106,26 @@ padding: 10px;</string>
      </property>
     </widget>
    </widget>
+   <widget class="QLabel" name="micLabel">
+    <property name="geometry">
+     <rect>
+      <x>375</x>
+      <y>100</y>
+      <width>450</width>
+      <height>650</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <zorder>micLabel</zorder>
    <zorder>label</zorder>
    <zorder>profileButton</zorder>
    <zorder>optionsWidget</zorder>
