@@ -96,9 +96,9 @@ class SignupScreen(QDialog):
                 data = "\n".join(lines)
                 f.seek(0)
                 f.write(data)
-            img_rc_py_path = str(os.path.join(os.path.dirname(sys.path[0]),'AI-Assistant\\ui\\image_rc.py'))
+            # img_rc_py_path = str(os.path.join(os.path.dirname(sys.path[0]),'AI-Assistant\\ui\\image_rc.py'))
             ui_dir = str(os.path.join(os.path.dirname(sys.path[0]),'AI-Assistant\\ui'))
-            os.system(f"cd {ui_dir} && python -m PyQt5.pyrcc_main {img_qrc_path} -o {img_rc_py_path}")
+            os.system(f"cd ui && python -m PyQt5.pyrcc_main image.qrc -o image_rc.py")
 
         except Exception as e:
             print(e)
