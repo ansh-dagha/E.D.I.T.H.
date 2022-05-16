@@ -7,6 +7,8 @@ from UI import login, signup, ui_home
 from utilities import notify
 import settings
 
+app = QApplication(sys.argv)
+
 while settings.exitFlag == False:
 
     importlib.reload(settings)
@@ -27,7 +29,6 @@ while settings.exitFlag == False:
 
     # username = 'anshdagha'
 
-    app = QApplication(sys.argv)
     home_ = ui_home.MainWindow()
     home_.show()
     print("Starting notification service")

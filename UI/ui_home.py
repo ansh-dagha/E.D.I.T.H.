@@ -64,12 +64,11 @@ class MainWindow(QMainWindow):
         self.comboBox.setCurrentText(self.addressee)
 
     def setImages(self):
-        
         try:
             self.profileButton.setStyleSheet("border-radius: 40px; \
-                border-image: url(:/images/" + self.username + ".png) 0 0 0 0 stretch stretch;")
+                border-image: url(ui/images/" + self.username + ".png) 0 0 0 0 stretch stretch;")
             self.editProfilePhotoButton.setStyleSheet("border-radius: 40px; \
-                border-image: url(:/images/" + self.username + ".png) 0 0 0 0 stretch stretch;")
+                border-image: url(ui/images/" + self.username + ".png) 0 0 0 0 stretch stretch;")
         except Exception as e:
             print(e)
             pass

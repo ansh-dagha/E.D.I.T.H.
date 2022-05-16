@@ -88,17 +88,6 @@ class SignupScreen(QDialog):
             src = str(os.path.join(os.path.dirname(sys.path[0]),f'AI-Assistant\\ui\\images\\defaultProfilePic.png'))
             dst = str(os.path.join(os.path.dirname(sys.path[0]),f'AI-Assistant\\ui\\images\\{settings.username}.png'))
             shutil.copy2(src, dst)
-            img_qrc_path = str(os.path.join(os.path.dirname(sys.path[0]),'AI-Assistant\\ui\\image.qrc'))
-            with open(img_qrc_path, 'r+') as f:
-                lines = f.read().split('\n')
-                string = f"\t<file>images/{settings.username}.png</file>"
-                lines.insert(-2, string)
-                data = "\n".join(lines)
-                f.seek(0)
-                f.write(data)
-            # img_rc_py_path = str(os.path.join(os.path.dirname(sys.path[0]),'AI-Assistant\\ui\\image_rc.py'))
-            ui_dir = str(os.path.join(os.path.dirname(sys.path[0]),'AI-Assistant\\ui'))
-            os.system(f"cd ui && python -m PyQt5.pyrcc_main image.qrc -o image_rc.py")
 
         except Exception as e:
             print(e)
