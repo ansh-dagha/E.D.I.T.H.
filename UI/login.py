@@ -49,6 +49,7 @@ class LoginScreen(QDialog):
             
             if checkPassword(username, password_hash):
                 settings.username = username
+                settings.addressee = getUserDetails(username)[2]
                 self.close()
                 settings.exitFlag = False
 

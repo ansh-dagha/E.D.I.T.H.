@@ -40,7 +40,7 @@ def start_service(username):
                 # sleep
                 time.sleep(1)
 
-    print("Stoping notification service")
+    print("Stoping Notification Service")
 
 # start_service('Mihir')
 

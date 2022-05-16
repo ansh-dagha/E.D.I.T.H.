@@ -1,10 +1,7 @@
-import importlib
-import sys
-import threading
-from turtle import goto
+import importlib, sys, threading
 from PyQt5.QtWidgets import QApplication
 from UI import login, signup, ui_home
-from utilities import notify
+from utilities import notify, listener
 import settings
 
 app = QApplication(sys.argv)
@@ -27,13 +24,19 @@ while settings.exitFlag == False:
 
     print("SUCCESS! Welcome ",settings.username)
 
-    # username = 'anshdagha'
-
     home_ = ui_home.MainWindow()
-    home_.show()
-    
-    print("Starting notification service")
     notification_thread = threading.Thread(target=notify.start_service, args=(settings.username,))
+    listener_thread = threading.Thread(target=listener.start_service, args=(home_,))
+    
+    home_.show()
+
+    print("Starting Notification Service")
     notification_thread.start()
+
+    print("Starting Listener Service")
+    listener_thread.start()
+
     app.exec_()
+
     notification_thread.join()
+    listener_thread.join()

@@ -68,6 +68,7 @@ class SignupScreen(QDialog):
 
         else:
             settings.username = username
+            settings.addressee = getUserDetails(username)[2]
             create_intents(settings.username)
             password_hash = hashlib.sha3_512(password.encode()).hexdigest()
             addDetails(username, email, password_hash)

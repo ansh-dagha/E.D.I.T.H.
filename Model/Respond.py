@@ -136,17 +136,17 @@ def assis_response(msg,profile):
 
 def chatting():
     while True:
-            statement=listen()
-            if not history:
-                output, chat_history = converse(statement)
-                history = True
-                print(output)
-                speak(output)
-                continue
-            
-            output, chat_history = converse(statement, chat_history)
+        statement=listen()
+        if not history:
+            output, chat_history = converse(statement)
+            history = True
             print(output)
             speak(output)
-            if statement in ['Stop','Bye','End','Quit']:
-                break
+            continue
+        
+        output, chat_history = converse(statement, chat_history)
+        print(output)
+        speak(output)
+        if statement in ['Stop','Bye','End','Quit']:
+            break
 

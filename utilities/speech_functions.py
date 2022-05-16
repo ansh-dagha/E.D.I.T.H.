@@ -9,6 +9,7 @@ def speak(text):
     engine.say(text)
     engine.runAndWait()
 
+# Listen interactively
 def listen():
     r = sr.Recognizer()
     while True:
@@ -23,3 +24,15 @@ def listen():
                 return query.lower()
             except Exception:
                 speak('Sorry... I didn\'t get you')
+
+# Listen pasively
+def listen_in_background():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        r.adjust_for_ambient_noise(source, duration = 0.2)
+        audio = r.listen(source)
+        try:
+            query = r.recognize_google(audio, language = 'en-in')
+            return query.lower()
+        except Exception:
+            return ''
