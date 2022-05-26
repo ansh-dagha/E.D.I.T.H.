@@ -10,11 +10,11 @@ from utilities.websearch import search_for,youtube
 from utilities.email_ import *
 from utilities.powerOptions import *
 from utilities.confirm import *
-# from utilities.conversational_util import *
+from utilities.todolist import *
 from utilities.weather import *
 from utilities.news import *
 from utilities.songs import *
-# from utilities.capture import *
+from utilities.capture import *
 import settings as settings
 from Model.train import training_model
 from keras.models import load_model
@@ -69,6 +69,8 @@ act_dict={'datetime':date,
 'song':songs,
 'news':news,
 'weather':weather,
+'capture':snapshot,
+'picture':camera,
 }
 
 def clean_up_sentence(sentence):
@@ -125,6 +127,10 @@ def getResponse(return_list, intents_json,profile):
         return
     elif tag =='learn':
         learn(profile,intents_json)
+    elif tag =='addtodo':
+        to_do_list_add_task(profile)
+    elif tag =='remtodo':
+        to_do_list_remove_task(profile)
 
 
 def assis_response(msg,profile):

@@ -406,36 +406,10 @@
         {
             "tag": "chat",
             "patterns": [
-                "let's chat",
-                "talk to me",
-                "can we chat?",
-                "can we talk",
-                "tell me something",
-                "entertain me"
+                "let's chat","talk to me","can we chat?","can we talk","tell me something","entertain me"
             ],
             "responses": [
-                "Getting ready to chat....",
-                "Okay",
-                "What do you want to talk about?",
-                "Let's start then"
-            ]
-        },
-        {
-            "tag": "favourite play",
-            "patterns": [
-                "favourite play"
-            ],
-            "responses": [
-                "football"
-            ]
-        },
-        {
-            "tag": "my favourite food",
-            "patterns": [
-                "my favourite food"
-            ],
-            "responses": [
-                "pizza"
+                "Getting ready to chat....","Okay","What do you want to talk about?","Let's start then"
             ]
         }
     ]

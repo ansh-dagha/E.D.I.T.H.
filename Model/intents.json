@@ -350,6 +350,19 @@
             ]
         },
         {
+            "tag": "picture",
+            "patterns": [
+                "take a picture",
+                "camera",
+                "take my photo",
+                "take a photo"
+            ],
+            "responses": [
+                "Capturing now...",
+                "Taking a shot now...."
+            ]
+        },
+        {
             "tag": "email",
             "patterns": [
                 "send an email",
@@ -401,6 +414,29 @@
             "responses": [
                 "Starting to learn....",
                 "Learning...."
+            ]
+        },
+        {
+            "tag": "addtodo",
+            "patterns": [
+                "Add to my tasks",
+                "Add to my to do list",
+                "Insert in my list"
+            ],
+            "responses": [
+                "Opening your list....","Give me a minute"
+            ]
+        },
+        {
+            "tag": "remtodo",
+            "patterns": [
+                "remove from the list",
+                "remove this task",
+                "clear from my list",
+                "clear from my tasks"
+            ],
+            "responses": [
+                "Opening your list....","Give me a minute"
             ]
         },
         {
