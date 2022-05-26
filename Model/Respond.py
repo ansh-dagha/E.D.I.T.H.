@@ -11,6 +11,7 @@ from utilities.email_ import *
 from utilities.powerOptions import *
 from utilities.confirm import *
 from utilities.todolist import *
+from utilities.conversational_util import *
 from utilities.weather import *
 from utilities.news import *
 from utilities.songs import *
@@ -62,8 +63,12 @@ def learn(profile,intents):
     # classes = pickle.load(open('Model/classes.pkl','rb'))
 
 def chatting():
+    history = False
     while True:
         statement=listen()
+        if 'quit' in statement or 'stop' in statement:
+            speak('it was nice chatting with you')
+            break
         if not history:
             output, chat_history = converse(statement)
             history = True
@@ -74,8 +79,7 @@ def chatting():
         output, chat_history = converse(statement, chat_history)
         print(output)
         speak(output)
-        if statement in ['Stop','Bye','End','Quit']:
-            break
+
 
 act_dict={'datetime':date,
 'google':search_for,
