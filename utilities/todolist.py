@@ -1,9 +1,9 @@
 import os, sys, json, re
 from datetime import datetime as dt
-from get_date_time import *
-# from utilities.get_date_time import *
-from speech_functions import * 
-# from utilities.speech_functions import * 
+# from get_date_time import *
+from utilities.get_date_time import *
+# from speech_functions import * 
+from utilities.speech_functions import * 
 
 
 # todolist_dir = os.path.join(os.path.dirname(sys.path[0]),'todolists')

@@ -1,6 +1,5 @@
 {
-    "intents": [
-        {
+    "intents": [{
             "tag": "greeting",
             "patterns": [
                 "Hi there",
@@ -350,6 +349,19 @@
             ]
         },
         {
+            "tag": "picture",
+            "patterns": [
+                "take a picture",
+                "camera",
+                "take my photo",
+                "take a photo"
+            ],
+            "responses": [
+                "Capturing now...",
+                "Taking a shot now...."
+            ]
+        },
+        {
             "tag": "email",
             "patterns": [
                 "send an email",
@@ -404,12 +416,35 @@
             ]
         },
         {
-            "tag": "chat",
+            "tag": "addtodo",
             "patterns": [
-                "let's chat","talk to me","can we chat?","can we talk","tell me something","entertain me"
+                "Add to my tasks",
+                "Add to my to do list",
+                "Insert in my list"
             ],
             "responses": [
-                "Getting ready to chat....","Okay","What do you want to talk about?","Let's start then"
+                "Opening your list....", "Give me a minute"
+            ]
+        },
+        {
+            "tag": "remtodo",
+            "patterns": [
+                "remove from the list",
+                "remove this task",
+                "clear from my list",
+                "clear from my tasks"
+            ],
+            "responses": [
+                "Opening your list....", "Give me a minute"
+            ]
+        },
+        {
+            "tag": "chat",
+            "patterns": [
+                "let's chat", "talk to me", "can we chat?", "can we talk", "tell me something", "entertain me"
+            ],
+            "responses": [
+                "Getting ready to chat....", "Okay", "What do you want to talk about?", "Let's start then"
             ]
         }
     ]

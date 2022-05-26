@@ -61,6 +61,21 @@ def learn(profile,intents):
     # words = pickle.load(open('Model/words.pkl','rb'))
     # classes = pickle.load(open('Model/classes.pkl','rb'))
 
+def chatting():
+    while True:
+        statement=listen()
+        if not history:
+            output, chat_history = converse(statement)
+            history = True
+            print(output)
+            speak(output)
+            continue
+        
+        output, chat_history = converse(statement, chat_history)
+        print(output)
+        speak(output)
+        if statement in ['Stop','Bye','End','Quit']:
+            break
 
 act_dict={'datetime':date,
 'google':search_for,
@@ -71,6 +86,7 @@ act_dict={'datetime':date,
 'weather':weather,
 'capture':snapshot,
 'picture':camera,
+'chat':chatting
 }
 
 def clean_up_sentence(sentence):
@@ -138,21 +154,3 @@ def assis_response(msg,profile):
     intents = json.loads(open(filename).read())
     ints = predict_class(msg,model)
     getResponse(ints, intents,profile)
-
-
-def chatting():
-    while True:
-        statement=listen()
-        if not history:
-            output, chat_history = converse(statement)
-            history = True
-            print(output)
-            speak(output)
-            continue
-        
-        output, chat_history = converse(statement, chat_history)
-        print(output)
-        speak(output)
-        if statement in ['Stop','Bye','End','Quit']:
-            break
-

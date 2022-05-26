@@ -101,4 +101,4 @@ def training_model(intent_path):
     model.save('Model/chatbot_model.h5', hist)
     print("Model Trained")
 
-# training_model('Model\gayatri_intents.json')
+# training_model('Model\intents.json')
