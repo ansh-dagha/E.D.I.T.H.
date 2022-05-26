@@ -2,6 +2,7 @@ import datetime
 import settings
 from Model.Respond import assis_response
 from utilities.speech_functions import *
+import asyncio
 
 def greet(addressee):
     hour = datetime.datetime.now().hour
@@ -12,7 +13,8 @@ def greet(addressee):
     else:
         speak(f'Good Evening {addressee}')
 
-def start_service(homeObj):
+def start_service(homeObj, loop):
+    asyncio.set_event_loop(loop)
     WAKE = "assistant"
     greet(settings.addressee)
 

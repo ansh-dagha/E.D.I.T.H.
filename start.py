@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QApplication
 from UI import login, signup, ui_home
 from utilities import notify, listener
 import settings
+import asyncio
 
 app = QApplication(sys.argv)
 
@@ -24,9 +25,11 @@ while settings.exitFlag == False:
 
     print("SUCCESS! Welcome ",settings.username)
 
+    loop = asyncio.new_event_loop()
+
     home_ = ui_home.MainWindow()
     notification_thread = threading.Thread(target=notify.start_service, args=(settings.username,))
-    listener_thread = threading.Thread(target=listener.start_service, args=(home_,))
+    listener_thread = threading.Thread(target=listener.start_service, args=(home_, loop))
     
     home_.show()
 
