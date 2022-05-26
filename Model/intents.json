@@ -424,7 +424,7 @@
                 "Insert in my list"
             ],
             "responses": [
-                "Opening your list....","Give me a minute"
+                "Updating your list....","Give me a minute"
             ]
         },
         {
@@ -434,6 +434,18 @@
                 "remove this task",
                 "clear from my list",
                 "clear from my tasks"
+            ],
+            "responses": [
+                "Updating your list....","Give me a minute"
+            ]
+        },
+        {
+            "tag": "opentodo",
+            "patterns": [
+                "open the list",
+                "show tasks",
+                "open my list",
+                "show my tasks"
             ],
             "responses": [
                 "Opening your list....","Give me a minute"
