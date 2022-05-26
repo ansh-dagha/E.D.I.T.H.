@@ -20,8 +20,9 @@ def start_service(homeObj, loop):
 
     while settings.exitFlag == False:
         statement = listen_in_background()
+        print('Listening...')
         if statement.count(WAKE) > 0:
             stat = statement.replace(WAKE,'')
             res = assis_response(stat, settings.username)
-            print("Response: ", res)
+            # print("Response: ", res)
     print("Terminating Listener Service...")
