@@ -32,7 +32,7 @@ def date():
     speak(f"It\'s {strTime} right now")
 
 def learn(profile,intents):
-    # global model,words,classes
+    global model, words, classes
     print('Help me Learn?')
     speak('What should I remember?')
     ms = listen()
@@ -58,9 +58,10 @@ def learn(profile,intents):
         outfile.write(json.dumps(intents,indent=4))
     
     training_model(filename)
-    # model = load_model('Model/chatbot_model.h5')
-    # words = pickle.load(open('Model/words.pkl','rb'))
-    # classes = pickle.load(open('Model/classes.pkl','rb'))
+    model, words, classes = None, None, None
+    model = load_model('Model/chatbot_model.h5')
+    words = pickle.load(open('Model/words.pkl','rb'))
+    classes = pickle.load(open('Model/classes.pkl','rb'))
 
 def chatting():
     history = False
@@ -127,7 +128,7 @@ def predict_class(sentence,model):
         return_list.append({"intent": classes[r[0]], "probability": str(r[1])})
     return return_list
 
-def getResponse(return_list, intents_json,profile):
+def getResponse(return_list, intents_json, profile):
     result=''
     if len(return_list) == 0:
         tag = 'noanswer'
@@ -154,7 +155,8 @@ def getResponse(return_list, intents_json,profile):
 
 
 def assis_response(msg,profile):
+    global model
     filename="Model/"+profile+"_intents.json"
     intents = json.loads(open(filename).read())
-    ints = predict_class(msg,model)
-    getResponse(ints, intents,profile)
+    ints = predict_class(msg, model)
+    getResponse(ints, intents, profile)

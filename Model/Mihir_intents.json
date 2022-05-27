@@ -1,5 +1,6 @@
 {
-    "intents": [{
+    "intents": [
+        {
             "tag": "greeting",
             "patterns": [
                 "Hi there",
@@ -423,7 +424,8 @@
                 "Insert in my list"
             ],
             "responses": [
-                "Opening your list....", "Give me a minute"
+                "Opening your list....",
+                "Give me a minute"
             ]
         },
         {
@@ -435,16 +437,52 @@
                 "clear from my tasks"
             ],
             "responses": [
-                "Opening your list....", "Give me a minute"
+                "Opening your list....",
+                "Give me a minute"
             ]
         },
         {
             "tag": "chat",
             "patterns": [
-                "let's chat", "talk to me", "can we chat?", "can we talk", "tell me something", "entertain me"
+                "let's chat",
+                "talk to me",
+                "can we chat?",
+                "can we talk",
+                "tell me something",
+                "entertain me"
             ],
             "responses": [
-                "Getting ready to chat....", "Okay", "What do you want to talk about?", "Let's start then"
+                "Getting ready to chat....",
+                "Okay",
+                "What do you want to talk about?",
+                "Let's start then"
+            ]
+        },
+        {
+            "tag": "what is my favourite colour",
+            "patterns": [
+                "what is my favourite colour"
+            ],
+            "responses": [
+                "blue"
+            ]
+        },
+        {
+            "tag": "what is my favourite place",
+            "patterns": [
+                "what is my favourite place"
+            ],
+            "responses": [
+                "home"
+            ]
+        },
+        {
+            "tag": "where are my keys",
+            "patterns": [
+                "where are my keys"
+            ],
+            "responses": [
+                "on the table"
             ]
         }
     ]

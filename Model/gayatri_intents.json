@@ -406,10 +406,36 @@
         {
             "tag": "chat",
             "patterns": [
-                "let's chat","talk to me","can we chat?","can we talk","tell me something","entertain me"
+                "let's chat",
+                "talk to me",
+                "can we chat?",
+                "can we talk",
+                "tell me something",
+                "entertain me"
             ],
             "responses": [
-                "Getting ready to chat....","Okay","What do you want to talk about?","Let's start then"
+                "Getting ready to chat....",
+                "Okay",
+                "What do you want to talk about?",
+                "Let's start then"
+            ]
+        },
+        {
+            "tag": "where are my keys",
+            "patterns": [
+                "where are my keys"
+            ],
+            "responses": [
+                "on the table"
+            ]
+        },
+        {
+            "tag": "what is my favourite colour",
+            "patterns": [
+                "what is my favourite colour"
+            ],
+            "responses": [
+                "blue"
             ]
         }
     ]
