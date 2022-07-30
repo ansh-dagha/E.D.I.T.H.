@@ -1,3 +1,4 @@
+# Uncomment below line when running first time
 # nltk.download('all')
 
 import os
