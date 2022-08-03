@@ -51,7 +51,7 @@ Users should be able to create profiles. To access personalized services login c
 * **Profile Personalisation:** <br/>
 This includes learning and storing information for each profile and using it to assist the user. For example, maintaining to-do lists, adding reminders of events to personal calendars, etc.
 
-<!--*For detailed description, please refer to [Project Report](https://drive.google.com/file/d/1BOljQH3an-HAHsVy-KAy33sVT_65mND_/view?usp=sharing)*<br/><br/>-->
+*For detailed description, please refer to [Project Report](https://drive.google.com/file/d/18qptnT2TzjrniUolgli-hYPxKBAUUz7C/view?usp=sharing)*<br/><br/>
 
 
 
